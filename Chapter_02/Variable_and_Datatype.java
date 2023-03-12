@@ -6,16 +6,12 @@ package Chapter_02;
 public class Variable_and_Datatype {
 
     public static void main(String[] args) {
-        char ch1 = 'A';
-        System.out.println(ch1);
-        System.out.println((int)ch1);
+        var it1 = 10; // Declare 'Local variable type inference'
+        var DB1 = 12.345; // Warning : Only local variable, If you declare once(ex : var str = 1), Can't declare one more with another type(var str = 'A'; (X))
+        var Ch1 = 'A';
 
-        char ch2 = 66;
-        System.out.println(ch2);
-
-        int ch3 = 'C';
-        System.out.println(ch3);
-        System.out.println((char)ch3);
-
+        System.out.println(it1);
+        System.out.println(DB1);
+        System.out.println(Ch1);
     }
 }

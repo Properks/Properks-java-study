@@ -6,19 +6,26 @@ package Chapter_04;
 public class Conditional_and_loop {
 
     public static void main(String[] args) {
-        char gender = 'F';
+        String rank = "platinum";
 
-        if(gender == 'F' || gender == 'f')
-        {
-            System.out.println("She is a woman");
-        }
-        else if (gender == 'M' || gender == 'm')
-        {
-            System.out.println("He is a man");
-        }
-        else
-        {
-            System.out.println("Input error!!");
-        }
+        switch (rank) {
+            case "bronze":
+                System.out.println("Your ranking is bronze.");
+                break;
+            case "silver":
+                System.out.println("Your ranking is silver.");
+                break;
+            case "gold":
+                System.out.println("Your ranking is gold.");
+                break;
+            case "platinum":
+                System.out.println("Your ranking is platinum.");
+                break;
+            case "diamond":
+                System.out.println("Your ranking is diamond.");
+                break;
+            default:
+                break;
+        }        
     }
 }

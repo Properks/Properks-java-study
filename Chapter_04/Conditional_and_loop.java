@@ -6,26 +6,13 @@ package Chapter_04;
 public class Conditional_and_loop {
 
     public static void main(String[] args) {
-        String rank = "platinum";
+        int sum = 1, num = 2;
 
-        switch (rank) {
-            case "bronze":
-                System.out.println("Your ranking is bronze.");
-                break;
-            case "silver":
-                System.out.println("Your ranking is silver.");
-                break;
-            case "gold":
-                System.out.println("Your ranking is gold.");
-                break;
-            case "platinum":
-                System.out.println("Your ranking is platinum.");
-                break;
-            case "diamond":
-                System.out.println("Your ranking is diamond.");
-                break;
-            default:
-                break;
-        }        
+        while(sum % 50 != 0)
+        {
+            sum += num;
+            num++;
+        }
+        System.out.println(sum);
     }
 }

@@ -4,20 +4,20 @@ package Chapter_05;
  * Student
  */
 public class Student {
-    String name;
-    int studentID;
-    double grade;
+    private String name;
+    private int studentID;
+    private double grade;
+    Subject korean; // subject class
+    Subject english;
 
-    public void inputName(String str) {
-        name = str;
+    public Student(){}
+    public Student(String strname, int intID, double korScore, double engScore){
+        name = strname;
+        studentID = intID;
+        korean = new Subject("korea", korScore); // Not Subject korean = new Subject("korea", korScore);
+        english = new Subject("english", engScore);
+        grade = (korScore + engScore) / 2;
     }
-    public void inputStudentID(int ID) {
-        studentID = ID;
-    }
-    public void inputGrade(double score) {
-        grade = score;
-    }
-
     public String getName() {
         return name;
     }
@@ -26,5 +26,9 @@ public class Student {
     }
     public double getGrade() {
         return grade;
+    }
+    public void printData() {
+        System.out.println("Name : " + name + "(" + studentID + ")");
+        System.out.println("Grade : " + grade + " (Korea : " + korean.score + ", English : " + english.score +")");
     }
 }

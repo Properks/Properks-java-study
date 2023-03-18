@@ -27,14 +27,4 @@ public class Student {
     public double getGrade() {
         return grade;
     }
-    public static void main(String[] args) {
-        Student firstStudent = new Student();
-        firstStudent.inputName("John");
-        firstStudent.inputStudentID(202210981);
-        firstStudent.inputGrade(4.23);
-
-        System.out.println("Name : " + firstStudent.getName());
-        System.out.println("ID : " + firstStudent.getStudentID());
-        System.out.println("Grade : " + firstStudent.getGrade());
-    }
 }

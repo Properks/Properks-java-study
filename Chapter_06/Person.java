@@ -19,25 +19,27 @@ public class Person {
         this.money = money;
     }
 
-    public void takeBus() {
+    public void takeBus(Bus bus) {
         if(this.age < 19 && this.age >= 12)
         {
-            checkMoney(this, 1100);
+            checkMoney(this, 1100, bus);
         }
         else if(this.age < 11)
         {
-            checkMoney(this, 800);
+            checkMoney(this, 800, bus);
         }
         else
         {
-            checkMoney(this, 1500);
+            checkMoney(this, 1500, bus);
         }
     }
 
-    public void checkMoney(Person name, int money) {
+    public void checkMoney(Person name, int money, Bus bus) {
         if(name.money >= money)
         {
             name.money -= money;
+            bus.plusMoney(money);
+            bus.plusPassenger();
         }
         else
         {

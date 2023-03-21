@@ -22,23 +22,23 @@ public class Person {
     public void takeBus(Bus bus) {
         if(this.age < 19 && this.age >= 12)
         {
-            checkMoney(this, 1100, bus);
+            checkMoney(this, bus.fee[1], bus);
         }
         else if(this.age < 11)
         {
-            checkMoney(this, 800, bus);
+            checkMoney(this, bus.fee[2], bus);
         }
         else
         {
-            checkMoney(this, 1500, bus);
+            checkMoney(this, bus.fee[0], bus);
         }
     }
 
-    public void checkMoney(Person name, int money, Bus bus) {
-        if(name.money >= money)
+    public void checkMoney(Person name, int fee, Bus bus) {
+        if(name.money >= fee)
         {
-            name.money -= money;
-            bus.plusMoney(money);
+            name.money -= fee;
+            bus.plusMoney(fee);
             bus.plusPassenger();
         }
         else

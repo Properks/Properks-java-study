@@ -7,7 +7,7 @@ public class Book {
 
     private String nameOfBook;
     private String author;
-    private String place;
+    String place;
 
     public Book() { // Basic constructor.
         nameOfBook = "Default";
@@ -19,6 +19,10 @@ public class Book {
         this.nameOfBook = name;
         this.author = author;
         this.place = place;
+    }
+
+    public String getName() {
+        return nameOfBook;
     }
 
     public String searchBook(String name) {

@@ -14,24 +14,26 @@ public class Array {
         library[3] = new Book("Worthy Opponents", "Danielle Steel", "N004");
         library[4] = new Book("All about love", "Bell Hooks", "V001"); // v -> vision
 
-        searchPage(library, "Colleen Hoover");
+        searchPage(library, "Colleen Hoover"); // search author
+        searchPage(library, "love"); // search a part of name of book
+        searchPage(library, "All of "); // search wrong
     }
     public static void searchPage(Book[] library, String argument) {
-        String temp;
-        int count = 0;
+        String temp; // Save string, return value
+        int count = 0; // In order to print, If can't find argument in library.
         System.out.println("Result : ");
-        for (int i = 0; i < library.length; i++) {
+        for (int i = 0; i < library.length; i++) { // Check all library
             temp = library[i].searchBook(argument);
-            if (temp != null) {
+            if (temp != null) { // If temp isn't null, return string
                 System.out.println(temp);
             }
             else {
-                count++;
+                count++; 
                 continue;
             }
         }
         if (count == library.length) {
-            System.out.println("Can't find " + argument);
+            System.out.println("Can't find " + "\"" + argument + "\"");
         }
     }
 }

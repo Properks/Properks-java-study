@@ -21,7 +21,7 @@ public class Customer {
     }
 
     public Customer(int ID, String name) {
-        this.customerID = ID;  // TODO: manage ID in main function
+        this.customerID = ID;
         this.customerName = name;
         this.totalBought = 0;  
         this.point = 0;
@@ -67,5 +67,15 @@ public class Customer {
     public void buySomething(int price, int point) {
         this.totalBought += (price - point);
         setGrade();
+    }
+
+    public String getGrade() {
+        return customerGrade;
+    }
+
+    public void showInfo() {
+        System.out.println("Name : " + customerName + "(" + customerID + ")");
+        System.out.println("Grade : " + customerGrade);
+        System.out.println("Point : " + point);
     }
 }

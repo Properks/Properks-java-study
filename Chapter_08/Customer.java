@@ -23,7 +23,7 @@ public class Customer {
     public Customer(int ID, String name) {
         this.customerID = ID;  // TODO: manage ID in main function
         this.customerName = name;
-        this.totalBought = 0; // TODO: totalbought = price - point, If use point
+        this.totalBought = 0;  
         this.point = 0;
         setGrade();
     }
@@ -57,5 +57,15 @@ public class Customer {
 
     public int setPoint(int price) {
         return (int)(price * this.bonusRatio);
+    }
+
+    public void buySomething(int price) {
+        this.totalBought += price;
+        this.point += setPoint(price); // plus point
+        setGrade(); // set grade automatically after buying
+    }
+    public void buySomething(int price, int point) {
+        this.totalBought += (price - point);
+        setGrade();
     }
 }

@@ -28,7 +28,7 @@ public class Customer {
         setGrade();
     }
 
-    public void setGrade() { 
+    public void setGrade() { // Set grade according to total amount
         if (this.totalBought < 100000) {
             this.customerGrade = "Rookie"; // 0 ~ 99,999
             this.bonusRatio = 0.0;
@@ -71,6 +71,13 @@ public class Customer {
 
     public String getGrade() {
         return customerGrade;
+    }
+
+    public int getID() {
+        return customerID;
+    }
+    public int getTotal() {
+        return totalBought;
     }
 
     public void showInfo() {

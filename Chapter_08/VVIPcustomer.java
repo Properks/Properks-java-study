@@ -18,7 +18,13 @@ public class VVIPcustomer extends Customer{
         this.agentID = number;
     }
 
-    public int getAgentID() {
+    public int getAgentID() { // it is similar with ranking
         return this.agentID;
+    }
+
+    public void buySomething(int price) {
+        this.totalBought += price - (price * saleBonus);
+        this.point += setPoint(price); // plus point
+        setGrade(); // set grade automatically after buying
     }
 }

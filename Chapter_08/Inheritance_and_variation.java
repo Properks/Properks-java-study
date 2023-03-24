@@ -8,33 +8,46 @@ import java.util.ArrayList;
 public class Inheritance_and_variation {
 
     public static void main(String[] args) {
-        ArrayList<VVIPcustomer> listVVIP = new ArrayList<VVIPcustomer>();
+        ArrayList<VVIPcustomer> listVVIP = new ArrayList<VVIPcustomer>(); // list of VVIP
 
-        Customer John = new Customer(202310001, "John");
+        Customer John = new Customer(202310001, "John"); // Declare customer
         Customer Amy = new Customer(202310002, "Amy");
 
         System.out.println("=======Amy=======");
-        buyProcess(listVVIP, Amy, 130000);
+        Amy = buyProcess(listVVIP, Amy, 130000);
         Amy.showInfo();
 
-        buyProcess(listVVIP, Amy, 500000);
+        Amy = buyProcess(listVVIP, Amy, 500000);
         Amy.showInfo();
 
         System.out.println("=======John=======");
-        buyProcess(listVVIP, John, 2560000);
+        John = buyProcess(listVVIP, John, 2560000); // In order to show VVIP
         John.showInfo();
 
-        System.out.println("=====VVIP list=====");
-        System.out.println(listVVIP.get(0).getAgentID() + " : " + listVVIP.get(0).customerName);
+        John = buyProcess(listVVIP, John, 1000000); //buySomething in buyProcess is VVIPcustomer's method
+        John.showInfo();
+        System.out.println(John.getTotal()); // Show whether sale applies to Customer John or not
+
+        System.out.println("=====VVIP list====="); // Print VVIP list
+        for (int i = 0; i < listVVIP.size(); i++) {
+            System.out.println(listVVIP.get(i).getAgentID() + " : " + listVVIP.get(i).customerName);
+        }
     }
 
-    public static void buyProcess(ArrayList<VVIPcustomer> listVVIP, Customer name, int price) {
+    public static Customer buyProcess(ArrayList<VVIPcustomer> listVVIP, Customer name, int price) {
         name.buySomething(price);
-        if (name.getGrade() == "VVIP") {
+        for (int i = 0; i < listVVIP.size(); i++) { // If Customer is in listVVIP, Do not anything
+            if(listVVIP.get(i).getID() == name.getID()) {
+                return name;
+            }
+        }
+        if (name.getGrade() == "VVIP") { // If customer is VVIP and not in listVVIP, insert in listVVIP and redifined with VVIPcustomer constructor for using its method
             listVVIP.add(new VVIPcustomer(name, listVVIP.size() + 1));
+            name = new VVIPcustomer(name, listVVIP.size());
+            return name;
         }
         else{
-            return;
+            return name;
         }
     }
 }

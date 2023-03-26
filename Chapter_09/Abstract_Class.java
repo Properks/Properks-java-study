@@ -9,16 +9,9 @@ public class Abstract_Class {
         Bus bus = new Bus();
         AutoCar auto = new AutoCar();
 
+        System.out.println("====Bus====");
         bus.run();
+        System.out.println("====Auto====");
         auto.run();
-
-        bus.refuel();
-        auto.refuel();
-
-        bus.takePassenger();
-        auto.load();
-
-        bus.stop();
-        auto.stop();
     }
 }

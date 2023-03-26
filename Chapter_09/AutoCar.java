@@ -4,13 +4,15 @@ package Chapter_09;
  * AutoCar
  */
 public class AutoCar extends Car{
-
-    public void run() {
-        System.out.println("Autocar is running");
-    }
-
+    
+    @Override
     public void refuel() {
         System.out.println("Autocar is filling up the natural gas"); 
+    }
+
+    @Override
+    public void drive() {
+        System.out.println("AutoCar goes to somewhere");
     }
 
     public void load() {

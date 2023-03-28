@@ -5,5 +5,6 @@ package Chapter_09.Game;
  */
 public class Player {
 
-    
+    protected String level;
+
 }

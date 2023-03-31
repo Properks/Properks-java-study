@@ -11,7 +11,7 @@ public class Roundrobin implements Schedular{ // Place them in order, regardless
     int countOfConsultant;
     int countOfCustomer;
     int numberOfWait[]; // number of wait for each consultant.
-    Queue<Integer> queue = new LinkedList<>(); // The queue is in the order customer called.
+    Queue<Integer> queueOfCustomer = new LinkedList<>(); // The queue is in the order customer called.
     
     public Roundrobin(int countOfConsultant) {
         this.countOfCustomer = 0;
@@ -21,13 +21,31 @@ public class Roundrobin implements Schedular{ // Place them in order, regardless
 
     @Override
     public void getNextCall() {
-        // TODO Auto-generated method stub
+        queueOfCustomer.add(++countOfCustomer);
         
     }
-
+    
     @Override
     public void sendCallToAgent() {
-        // TODO Auto-generated method stub
-        
+        int temp = queueOfCustomer.poll();
+        if (countOfConsultant == 0) {
+            System.out.println("Today is day off");
+            System.exit(-1);
+        }
+        else {
+            for (int i = 0; i < countOfConsultant; i++) {
+                if (((temp - 1) % countOfConsultant) == i) {
+                    numberOfWait[i]++;
+                    break;
+                }
+            }
+        }
+    }
+
+    public void showInfo() {
+        for (int i = 0; i < countOfConsultant; i++) {
+            System.out.println((i + 1) + " : " + numberOfWait[i]);
+        }
+        System.out.println("Queue : " + queueOfCustomer);
     }
 }

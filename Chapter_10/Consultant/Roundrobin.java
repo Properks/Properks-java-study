@@ -21,22 +21,27 @@ public class Roundrobin implements Schedular{ // Place them in order, regardless
 
     @Override
     public void getNextCall() {
-        queueOfCustomer.add(++countOfCustomer);
-        
+        queueOfCustomer.add(++countOfCustomer); // Add in queue with queue number
     }
     
     @Override
     public void sendCallToAgent() {
-        int temp = queueOfCustomer.poll();
-        if (countOfConsultant == 0) {
-            System.out.println("Today is day off");
-            System.exit(-1);
+        if (queueOfCustomer.peek() == null) {
+            System.out.println("No one is in queue");
+            return;
         }
         else {
-            for (int i = 0; i < countOfConsultant; i++) {
-                if (((temp - 1) % countOfConsultant) == i) {
-                    numberOfWait[i]++;
-                    break;
+            int temp = queueOfCustomer.poll();
+            if (countOfConsultant == 0) {
+                System.out.println("Today is day off");
+                System.exit(-1);
+            }
+            else {
+                for (int i = 0; i < countOfConsultant; i++) {
+                    if (((temp - 1) % countOfConsultant) == i) {
+                        numberOfWait[i]++;
+                        break;
+                    }
                 }
             }
         }

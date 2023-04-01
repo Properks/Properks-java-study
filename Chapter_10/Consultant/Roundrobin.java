@@ -26,19 +26,19 @@ public class Roundrobin implements Schedular{ // Place them in order, regardless
     
     @Override
     public void sendCallToAgent() {
-        if (queueOfCustomer.peek() == null) {
-            System.out.println("No one is in queue");
+        if (queueOfCustomer.peek() == null) { // if queue is empty.
+            System.out.println("No one who want to be consulted");
             return;
         }
         else {
             int temp = queueOfCustomer.poll();
-            if (countOfConsultant == 0) {
+            if (countOfConsultant == 0) { // if consultant is 0.
                 System.out.println("Today is day off");
                 System.exit(-1);
             }
             else {
                 for (int i = 0; i < countOfConsultant; i++) {
-                    if (((temp - 1) % countOfConsultant) == i) {
+                    if (((temp - 1) % countOfConsultant) == i) {// send customer to consultant in order
                         numberOfWait[i]++;
                         break;
                     }

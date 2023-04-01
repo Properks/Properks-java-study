@@ -1,32 +1,50 @@
 package Chapter_10.Consultant;
 
+import java.io.IOException;
+
 /**
  * Implement
  */
 public class Implement {
 
-    public static void main(String[] args) {
-        Leastjob LJ = new Leastjob(5);
+    public static void main(String[] args) throws IOException {
+        System.out.println("R : Distribute customer to each consultant fairly");
+        System.out.println("L : Distribute customer to consultant with the fewest customer");
+        int ch = System.in.read();
+        Schedular systemOfDistribution = null;
+
+        if (ch == 'R' || ch == 'r') {
+            systemOfDistribution = new Roundrobin(5);
+        }
+        else if (ch == 'L' || ch == 'l') {
+            systemOfDistribution = new Leastjob(5);
+        }
+        else {
+            System.err.println("I don't have this form " + "\'" + ch + "\'");
+            return;
+        }
 
         for (int i = 0; i < 30; i++) { // Plus 30 in queue
-            LJ.getNextCall();
+            systemOfDistribution.getNextCall();
         }
         
         for (int i = 0; i < 19; i++) { // Distribute 19 customer to each consultant
-            LJ.sendCallToAgent();
+            systemOfDistribution.sendCallToAgent();
         }
-        LJ.showInfo();
+        System.out.println("Add is done=========================");
+        systemOfDistribution.showInfo();
 
         for (int i = 0; i < 2; i++) { // 2nd, 4th consultant's two consulting is done 
-            LJ.consultIsEnd(2);
-            LJ.consultIsEnd(4);
+            systemOfDistribution.consultIsEnd(2);
+            systemOfDistribution.consultIsEnd(4);
         }
-        LJ.showInfo();
+        System.out.println("Delete is done=========================");
+        systemOfDistribution.showInfo();
             
         for (int i = 0; i < 3; i++) { // Print how to add customer to consultant.
-            LJ.sendCallToAgent();
+            systemOfDistribution.sendCallToAgent();
             System.out.println("====" + (i + 1) + " / 3====");
-            LJ.showInfo();
+            systemOfDistribution.showInfo();
         }
     }
 }

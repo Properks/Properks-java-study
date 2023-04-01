@@ -47,6 +47,7 @@ public class Roundrobin implements Schedular{ // Place them in order, regardless
         }
     }
 
+    @Override
     public void showInfo() {
         for (int i = 0; i < countOfConsultant; i++) {
             System.out.println((i + 1) + " : " + numberOfWait[i]);
@@ -54,7 +55,14 @@ public class Roundrobin implements Schedular{ // Place them in order, regardless
         System.out.println("Queue : " + queueOfCustomer);
     }
 
+    @Override
     public void consultIsEnd(int consultantNumber) {
-        numberOfWait[(consultantNumber- 1)]--; // If 1st consultant's consulting is over, minus one numberOfWait[0]
+        if (consultantNumber > countOfConsultant) {
+            System.out.println("Inputed number in consultIsEnd function is larger than count of consultant");
+            System.exit(-1);
+        }
+        else {
+            numberOfWait[(consultantNumber- 1)]--; // If 1st consultant's consulting is over, minus one numberOfWait[0]
+        }
     }
 }

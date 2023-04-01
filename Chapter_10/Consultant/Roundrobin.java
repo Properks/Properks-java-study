@@ -53,4 +53,8 @@ public class Roundrobin implements Schedular{ // Place them in order, regardless
         }
         System.out.println("Queue : " + queueOfCustomer);
     }
+
+    public void consultIsEnd(int consultantNumber) {
+        numberOfWait[(consultantNumber- 1)]--; // If 1st consultant's consulting is over, minus one numberOfWait[0]
+    }
 }

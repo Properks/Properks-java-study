@@ -37,6 +37,7 @@ public class Leastjob implements Schedular{
             }
             else { // send customer to consultant with the fewest customer
                 numberOfWait[findMinValue()]++;
+                queueOfCustomer.poll();
             }
         }
         
@@ -45,10 +46,21 @@ public class Leastjob implements Schedular{
     public int findMinValue() {
         int temp = 0;
         for (int i = 1; i < numberOfWait.length; i++) {
-            if (numberOfWait[temp] > numberOfWait[i]) {
+            if (numberOfWait[temp] > numberOfWait[i]) { // compare to each element
                 temp = i;
             }
         }
         return temp;
+    }
+
+    public void showInfo() {
+        for (int i = 0; i < countOfConsultant; i++) {
+            System.out.println((i + 1) + " : " + numberOfWait[i]);
+        }
+        System.out.println("Queue : " + queueOfCustomer);
+    }
+
+    public void consultIsEnd(int consultantNumber) {
+        numberOfWait[(consultantNumber- 1)]--; // If 1st consultant's consulting is over, minus one numberOfWait[0]
     }
 }

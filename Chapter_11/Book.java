@@ -26,6 +26,10 @@ public class Book {
         return numPages;
     }
 
+    public String toString() {
+        return title + "(" + author + ")";
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }

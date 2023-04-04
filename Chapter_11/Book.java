@@ -30,6 +30,15 @@ public class Book {
         return title + "(" + author + ")";
     }
 
+    public Boolean equals(Book anotherBook) {
+        if (this.title == anotherBook.title && this.author == anotherBook.author && this.numPages == anotherBook.numPages) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }

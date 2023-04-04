@@ -7,53 +7,31 @@ public class Basic_Class_JDK {
 
     public static void main(String[] args) throws CloneNotSupportedException {
         
-        Book Book1 = new Book("It starts with us", "Colleen Hoover", 336, 1101100);
-        Book Book2 = (Book)Book1.clone(); // Book1;
-        Book Book3 = new Book("It starts with us", "Colleen Hoover", 336, 1101101);
+        String str1 = new String("Java");
+        String str2 = new String("programming");
 
-        Book2.printBookInfo(); // same as Book1 by copying, but has different address
+        System.out.println("==========Using concat==========");
+        System.out.println("Hashcode of str1 before using concat (str1 : " + str1 + ") : " + System.identityHashCode(str1));
+        str1 = str1.concat(" " + str2);
+        // str1 = str1 + str2;
+        System.out.println("Hashcode of str1 after using concat (str1 : " + str1 + ") : " + System.identityHashCode(str1) + "\n");
+        //Make another memory and change address of str1
 
-        System.out.println("=======Reference=======");
-        if (Book1 == Book2) {
-            System.out.println("Book2's address is same as book1's");
-        }
-        else {
-            System.out.println("Book2's address isn't same as book1's");
-        }
-        if (Book1.equals(Book2)) {
-            System.out.println("Book2's body is same as book1's");
-        }
-        else {
-            System.out.println("Book2's body isn't same as book1's");
-        }
-
-        System.out.println("=======New but same name=======");
-        if (Book1 == Book3) {
-            System.out.println("Book2's address is same as book1's");
-        }
-        else {
-            System.out.println("Book2's address isn't same as book1's");
-        }
-        if (Book1.equals(Book3)) {
-            System.out.println("Book2's body is same as book1's"); // If i use overriding equal function.
-        }
-        else {
-            System.out.println("Book2's body isn't same as book1's"); // If i don't use overriding equal function.
-        }
-        System.out.println("=======hashcode=======");
-        System.out.println(Book1.hashCode()); // overriding. will return bookID
-        if (Book1.hashCode() == Book2.hashCode()) {
-            System.out.println("Book1 has same code with Book2");
-        }
-        else {
-            System.out.println("Book1 doesn't have same code with Book2");
-        }
-        if (Book1.hashCode() == Book3.hashCode()) {
-            System.out.println("Book1 has same code with Book3");
-        }
-        else {
-            System.out.println("Book1 doesn't have same code with Book3");
-        }
+        StringBuilder buffer = new StringBuilder(str1);
+        System.out.println("==========Using StringBuilder==========");
+        System.out.println("Hashcode of str1 before using Stringbuilder (str1 : " + str1 + ") : " + System.identityHashCode(str1));
+        buffer.append(" is" + " easy");
+        System.out.println("Hashcode of str1 after using Stringbuilder (str1 : " + str1 + ") : " + System.identityHashCode(str1));
+        System.out.println("Hashcode of str1 after using Stringbuilder (buffer : " + buffer + ") : " + System.identityHashCode(buffer) + "\n");
+        // Doesn't change address of memory
         
+        //If you wanna cut string
+        String newstr1 = str1.replace(str2, "program");
+        String newstr2 = str1.substring(0, 4);// endindex is number of string, not real index 
+
+        System.out.println("==========Using replace and substring==========");
+        System.out.println("replace(str2, \"program\") of str1 : " + newstr1);
+        System.out.println("Substring(0,3) of str1 : " + newstr2);
+
     }
 }

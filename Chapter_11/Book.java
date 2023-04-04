@@ -3,7 +3,7 @@ package Chapter_11;
 /**
  * Book
  */
-public class Book {
+public class Book implements Cloneable {
     private String title;
     private String author;
     private int numPages;
@@ -43,6 +43,10 @@ public class Book {
 
     public int hashCode() { // overriding
         return bookID;
+    }
+
+    public Object clone() throws CloneNotSupportedException{
+        return super.clone();
     }
 
     public void setTitle(String title) {

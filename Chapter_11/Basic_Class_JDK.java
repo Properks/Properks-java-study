@@ -5,11 +5,13 @@ package Chapter_11;
  */
 public class Basic_Class_JDK {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CloneNotSupportedException {
         
         Book Book1 = new Book("It starts with us", "Colleen Hoover", 336, 1101100);
-        Book Book2 = Book1;
+        Book Book2 = (Book)Book1.clone(); // Book1;
         Book Book3 = new Book("It starts with us", "Colleen Hoover", 336, 1101101);
+
+        Book2.printBookInfo(); // same as Book1 by copying, but has different address
 
         System.out.println("=======Reference=======");
         if (Book1 == Book2) {

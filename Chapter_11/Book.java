@@ -7,11 +7,13 @@ public class Book {
     private String title;
     private String author;
     private int numPages;
+    private int bookID;
 
-    public Book(String title, String author, int numPages) {
+    public Book(String title, String author, int numPages, int bookID) {
         this.title = title;
         this.author = author;
         this.numPages = numPages;
+        this.bookID = bookID;
     }
 
     public String getTitle() {
@@ -26,17 +28,21 @@ public class Book {
         return numPages;
     }
 
-    public String toString() {
+    public String toString() { // overriding
         return title + "(" + author + ")";
     }
 
-    public Boolean equals(Book anotherBook) {
+    public Boolean equals(Book anotherBook) { // overriding
         if (this.title == anotherBook.title && this.author == anotherBook.author && this.numPages == anotherBook.numPages) {
             return true;
         }
         else {
             return false;
         }
+    }
+
+    public int hashCode() { // overriding
+        return bookID;
     }
 
     public void setTitle(String title) {

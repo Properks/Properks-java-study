@@ -5,33 +5,21 @@ package Chapter_11;
  */
 public class Basic_Class_JDK {
 
-    public static void main(String[] args) throws CloneNotSupportedException {
+    public static void main(String[] args) {
         
-        String str1 = new String("Java");
-        String str2 = new String("programming");
+        Integer intValue = Integer.valueOf(42); // == Integer.parseInt("42"); like atoi(char* s);
+        Integer sameIntValue = 42; //  If intValue = Integer.valueOf("42");, sameIntValue = Integer.valueOf("42"); Result is same
+        Integer assignIntValue = intValue;
 
-        System.out.println("==========Using concat==========");
-        System.out.println("Hashcode of str1 before using concat (str1 : " + str1 + ") : " + System.identityHashCode(str1));
-        str1 = str1.concat(" " + str2);
-        // str1 = str1 + str2;
-        System.out.println("Hashcode of str1 after using concat (str1 : " + str1 + ") : " + System.identityHashCode(str1) + "\n");
-        //Make another memory and change address of str1
-
-        StringBuilder buffer = new StringBuilder(str1);
-        System.out.println("==========Using StringBuilder==========");
-        System.out.println("Hashcode of str1 before using Stringbuilder (str1 : " + str1 + ") : " + System.identityHashCode(str1));
-        buffer.append(" is" + " easy");
-        System.out.println("Hashcode of str1 after using Stringbuilder (str1 : " + str1 + ") : " + System.identityHashCode(str1));
-        System.out.println("Hashcode of str1 after using Stringbuilder (buffer : " + buffer + ") : " + System.identityHashCode(buffer) + "\n");
-        // Doesn't change address of memory
+        System.out.println("==========Before modify intValue==========");
+        System.out.println("intValue : " + intValue.intValue());
+        System.out.println("sameIntValue : " + sameIntValue.intValue()); 
+        System.out.println("assignIntValue : " + assignIntValue.intValue());
         
-        //If you wanna cut string
-        String newstr1 = str1.replace(str2, "program");
-        String newstr2 = str1.substring(0, 4);// endindex is number of string, not real index 
-
-        System.out.println("==========Using replace and substring==========");
-        System.out.println("replace(str2, \"program\") of str1 : " + newstr1);
-        System.out.println("Substring(0,3) of str1 : " + newstr2);
-
+        intValue = 21;
+        System.out.println("==========After modify intValue==========");
+        System.out.println("intValue : " + intValue.intValue());
+        System.out.println("sameIntValue : " + sameIntValue.intValue()); // Not Reference
+        System.out.println("assignIntValue : " + assignIntValue.intValue()); // Not Reference
     }
 }

@@ -9,7 +9,7 @@ public class Basic_Class_JDK {
         
         Integer intValue = Integer.valueOf(42);
         
-        Class c = intValue.getClass();
+        Class<?> c = intValue.getClass();
         System.out.println("c : " + c);
         
         c = Integer.class;

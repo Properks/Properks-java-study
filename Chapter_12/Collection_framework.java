@@ -7,10 +7,14 @@ public class Collection_framework {
 
     public static void main(String[] args) {
         
-        Pair<String, Integer> P = new Pair<String, Integer>("Number", 13);
+        Map<String, Integer> map = new Map<>();
 
-        System.out.println("Value of P : " + P.getValue());
-        P.set("John", 1102843);
-        System.out.println("Value of P : " + P.getValue());
+        Pair<String, Integer> P = new Pair<>("John", 13);
+        // Pair<Integer, String> PPrime = new Pair<>(13,"John");
+        map.setKeyBValue(P);
+        map.setKeyBValue("Jack", 32);
+        // map.setKeyBValue(PPrime); Has type error
+
+        map.showInfo();
     }
 }

@@ -1,7 +1,0 @@
-/**
- * Arraylist
- */
-public class Arraylist {
-
-    
-}

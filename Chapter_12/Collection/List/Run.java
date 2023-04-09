@@ -8,7 +8,7 @@ import Chapter_12.Collection.*;
 public class Run {
 
     public static void main(String[] args) {
-        Mystack<Member> newStack = new Mystack<>();
+        Myqueue<Member> newQueue = new Myqueue<>();
         Member John = new Member("John", 20201190);
         Member Jack = new Member("Jack", 20201191);
         Member David = new Member("David", 20201192);
@@ -17,26 +17,24 @@ public class Run {
         Member Robert = new Member("Robert", 20201195);
 
         System.out.println("Pop when nothing is in stack=====================");
-        newStack.pop();
+        newQueue.pop();
         System.out.println("Push in stack============================");
         
-        newStack.push(John);
-        newStack.push(Jack);
-        newStack.push(David);
-        newStack.push(Kane);
-        newStack.push(Emily);
-        newStack.push(Robert);
+        newQueue.push(John);
+        newQueue.push(Jack);
+        newQueue.push(David);
+        newQueue.push(Kane);
+        newQueue.push(Emily);
+        newQueue.push(Robert);
         
         System.out.println("Stack===================================");
-        newStack.showInfo();
+        newQueue.showInfo();
         
         System.out.println("Pop in stack============================");
-        Member top = newStack.top();
-        newStack.pop();
-        System.out.println("Popped member is " + top);
+        Member remove = newQueue.pop();
+        System.out.println("Popped member is " + remove);
         
         System.out.println("Stack===================================");
-        newStack.showInfo();
-
+        newQueue.showInfo();
     }
 }

@@ -8,7 +8,7 @@ import Chapter_12.Collection.*;
 public class Run {
 
     public static void main(String[] args) {
-        Arraylist listOfMember = new Arraylist();
+        Mystack<Member> newStack = new Mystack<>();
         Member John = new Member("John", 20201190);
         Member Jack = new Member("Jack", 20201191);
         Member David = new Member("David", 20201192);
@@ -16,20 +16,27 @@ public class Run {
         Member Emily = new Member("Emily", 20201194);
         Member Robert = new Member("Robert", 20201195);
 
-        listOfMember.addMember(John);
-        listOfMember.addMember(Jack);
-        listOfMember.addMember(David);
-        listOfMember.addMember(Kane);
-        listOfMember.addMember(Emily);
-        listOfMember.addMember(Robert);
-
-        listOfMember.showAllMember();
-
-        listOfMember.removeMember("Dave");
-        listOfMember.removeMember("Emily");
-        listOfMember.removeMember(David);
-
-        listOfMember.showAllMember();
+        System.out.println("Pop when nothing is in stack=====================");
+        newStack.pop();
+        System.out.println("Push in stack============================");
+        
+        newStack.push(John);
+        newStack.push(Jack);
+        newStack.push(David);
+        newStack.push(Kane);
+        newStack.push(Emily);
+        newStack.push(Robert);
+        
+        System.out.println("Stack===================================");
+        newStack.showInfo();
+        
+        System.out.println("Pop in stack============================");
+        Member top = newStack.top();
+        newStack.pop();
+        System.out.println("Popped member is " + top);
+        
+        System.out.println("Stack===================================");
+        newStack.showInfo();
 
     }
 }

@@ -1,6 +1,8 @@
 package Chapter_12.Collection.List;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+
 import Chapter_12.Collection.Member;
 
 /**
@@ -23,24 +25,28 @@ public class Arraylist {
         memberList.add(temp);
     }
 
-    public void removeMember(Member m) {
-        memberList.remove(m);
-    }
-
-    public void removeMember(String name) {
-        int temp = -1;
-        for (int i = 0; i < memberList.size(); i++) {
-            if (memberList.get(i).getName() == name) {
-                temp = i;
+    public boolean removeMember(Member m) {
+        Iterator<Member> ir = memberList.iterator();
+        while (ir.hasNext()) {
+            Member temp = ir.next();
+            if (temp.getName() == m.getName()) {
+                memberList.remove(m);
+                return true;
             }
         }
-        if (temp == -1) {
-            System.err.println("Can't find " + name + " in Array");
-            return;
+        return false;
+    }
+
+    public boolean removeMember(String name) { // modify code with iterator, without get(int)
+        Iterator<Member> ir = memberList.iterator();
+        while (ir.hasNext()) {
+            Member temp = ir.next();
+            if (temp.getName() == name) {
+                memberList.remove(temp);
+                return true;
+            }
         }
-        else {
-            memberList.remove(temp);
-        }
+        return false;
     }
 
     public void showAllMember() {

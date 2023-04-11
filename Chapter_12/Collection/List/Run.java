@@ -8,7 +8,7 @@ import Chapter_12.Collection.*;
 public class Run {
 
     public static void main(String[] args) {
-        Myqueue<Member> newQueue = new Myqueue<>();
+        Arraylist list = new Arraylist();
         Member John = new Member("John", 20201190);
         Member Jack = new Member("Jack", 20201191);
         Member David = new Member("David", 20201192);
@@ -16,25 +16,42 @@ public class Run {
         Member Emily = new Member("Emily", 20201194);
         Member Robert = new Member("Robert", 20201195);
 
-        System.out.println("Pop when nothing is in stack=====================");
-        newQueue.pop();
-        System.out.println("Push in stack============================");
+        System.out.println("Remove when nothing is in list=====================");
+        remove(list, Emily);
+        System.out.println("Add in list============================");
         
-        newQueue.push(John);
-        newQueue.push(Jack);
-        newQueue.push(David);
-        newQueue.push(Kane);
-        newQueue.push(Emily);
-        newQueue.push(Robert);
+        list.addMember(John);
+        list.addMember(Jack);
+        list.addMember(David);
+        list.addMember(Kane);
+        list.addMember(Emily);
+        list.addMember(Robert);
+        
+        System.out.println("Arraylist===================================");
+        list.showAllMember();
+        
+        System.out.println("Remove in Arraylist============================");
+        remove(list, John);
         
         System.out.println("Stack===================================");
-        newQueue.showInfo();
-        
-        System.out.println("Pop in stack============================");
-        Member remove = newQueue.pop();
-        System.out.println("Popped member is " + remove);
-        
-        System.out.println("Stack===================================");
-        newQueue.showInfo();
+        list.showAllMember();
+    }
+
+    public static void remove(Arraylist list, Member M) {
+        if (list.removeMember(M)) {
+            System.out.println("Remove " + M.getName());
+        }
+        else {
+            System.out.println("Can't find " + M.getName());
+        }
+    }
+
+    public static void remove(Arraylist list, String name) {
+        if (list.removeMember(name)) {
+            System.out.println("Remove " + name);
+        }
+        else {
+            System.out.println("Can't find " + name);
+        }
     }
 }

@@ -31,6 +31,6 @@ public class Member {
     
     @Override
     public String toString() {
-        return name + "\'s memberID is " + memberID;
+        return "{" + name + ", " + memberID + "}";
     }
 }

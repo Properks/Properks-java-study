@@ -28,6 +28,22 @@ public class Member {
     public void setMemberID(int memberID) {
         this.memberID = memberID;
     }
+
+    @Override
+    public int hashCode() {
+        return memberID;
+    }
+    
+    @Override
+    public boolean equals(Object ob) {// The reason why I use Object as parameter is equal function's parameter is object
+        if (ob instanceof Member) {
+            Member temp = (Member)ob;
+            if (this.memberID == temp.memberID) {
+                return true;
+            }
+        }
+        return false;
+    } // If two members' memberID is same, Computer think same things and not add in HashSet
     
     @Override
     public String toString() {

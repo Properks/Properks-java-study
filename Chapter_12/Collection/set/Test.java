@@ -16,6 +16,7 @@ public class Test {
         Member Kane = new Member("Kane", 20201193);
         Member Emily = new Member("Emily", 20201194);
         Member Robert = new Member("Robert", 20201195);
+        Member Trace = new Member("Trace", 20201195);
 
         System.out.println("\nAdd in Set============================");
 
@@ -26,6 +27,8 @@ public class Test {
         set.addMember(Emily);
         set.addMember(Robert);
         set.addMember(Emily); // If it is in Set already, Doesn't add it.
+        set.addMember(Trace); // Same member ID
+
 
 
         System.out.println("\nSet===================================");

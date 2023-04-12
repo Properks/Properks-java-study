@@ -1,9 +1,10 @@
 package Chapter_12.Collection;
 
+import java.lang.Comparable;
 /**
  * Member
  */
-public class Member {
+public class Member implements Comparable<Member> {// For TreeSet
 
     protected String name;
     protected int memberID;
@@ -48,5 +49,13 @@ public class Member {
     @Override
     public String toString() {
         return "{" + name + ", " + memberID + "}";
+    }
+
+    @Override
+    public int compareTo(Member other) { // which one compare to for sorting
+        return this.name.compareTo(other.name); // ascending
+        // return other.name.compareTo(this.name); // descending
+        // return this.name.compareTo(other.name) * (-1);
+        
     }
 }

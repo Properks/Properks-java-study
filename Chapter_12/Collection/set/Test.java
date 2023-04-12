@@ -8,7 +8,7 @@ public class Test {
 
     public static void main(String[] args) {
         
-        Hashset set = new Hashset();
+        Treeset set = new Treeset();
     
         Member John = new Member("John", 20201190);
         Member Jack = new Member("Jack", 20201191);
@@ -35,7 +35,7 @@ public class Test {
         System.out.println(set);
         
         System.out.println("\nRemove in Set============================");
-        remove(set, John);
+        remove(set, "John");
         System.out.println(set); // Print element randomly.
         
         System.out.println("\nSearch in Set============================");
@@ -44,16 +44,16 @@ public class Test {
         search(set, "John");
     }
 
-    public static void remove(Hashset list, Member M) {
-        if (list.removeMember(M)) {
-            System.out.println("Remove " + M.getName());
-        }
-        else {
-            System.out.println("Can't find " + M.getName());
-        }
-    }
+    // public static void remove(Treeset list, Member M) {
+    //     if (list.removeMember(M)) {
+    //         System.out.println("Remove " + M.getName());
+    //     }
+    //     else {
+    //         System.out.println("Can't find " + M.getName());
+    //     }
+    // }
 
-    public static void remove(Hashset list, String name) {
+    public static void remove(Treeset list, String name) {
         if (list.removeMember(name)) {
             System.out.println("Remove " + name);
         }
@@ -62,7 +62,7 @@ public class Test {
         }
     }
 
-    public static void search(Hashset set, String name) {
+    public static void search(Treeset set, String name) {
         int temp;
         if ((temp = set.searchID(name)) != -1) {
             System.out.println(name + "'s ID is " + temp);

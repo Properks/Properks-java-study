@@ -1,19 +1,18 @@
 package Chapter_12.Collection.map;
 
-import java.util.HashMap;
 import java.util.Iterator;
-
+import java.util.TreeMap;
 import Chapter_12.Collection.Member;
 
 /**
- * Hashmap
+ * Treemap
  */
-public class Hashmap {
+public class Treemap {
 
-    HashMap<Integer, Member> map;
+    TreeMap<Integer, Member> map;
 
-    public Hashmap() {
-        map = new HashMap<>();
+    public Treemap() {
+        map = new TreeMap<>();
     }
 
     public void addMember(Member M) {

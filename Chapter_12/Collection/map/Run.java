@@ -8,7 +8,7 @@ public class Run {
 
     public static void main(String[] args) {
         
-        Hashmap map = new Hashmap();
+        Treemap map = new Treemap();
     
         Member John = new Member("John", 20201190);
         Member Jack = new Member("Jack", 20201191);
@@ -44,7 +44,7 @@ public class Run {
         search(map, "John");
 
     }
-    public static void search(Hashmap map, String name) {
+    public static void search(Treemap map, String name) {
         Member temp;
         if ((temp = map.searchID(name)) != null) {
             System.out.println(temp);

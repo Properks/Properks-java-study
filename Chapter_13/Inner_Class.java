@@ -15,5 +15,9 @@ public class Inner_Class {
         OutClass.InStaticClass innerStatic = new OutClass.InStaticClass();
         innerStatic.sumNumbers();
         OutClass.InStaticClass.sumNumbers2(); // Can use like this. But, OutClass.(static).(static)
+
+        Runnable runner = test.getRunnable();
+        runner.run();
+
     }
 }

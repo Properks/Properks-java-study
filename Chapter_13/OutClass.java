@@ -6,7 +6,7 @@ package Chapter_13;
 public class OutClass {
 
     private int number1 = 10;
-    private static int number2 = 20;
+    static int number2 = 20;
 
     InnerClass inclass;
     public OutClass() {
@@ -32,5 +32,25 @@ public class OutClass {
         void sumNumbers() {
             System.out.println(number1 + " + " + number2 + " = " + innerNumber1); // Can access value is in outclass
         }
+    }
+
+
+    static public class InStaticClass {
+    
+        int innerNumber1 = 80;
+        static int instaticnum = 100;
+        final String str = "InStaticclass is created"; // Can use final (constant)
+
+        public InStaticClass() {
+            System.out.println(str);
+        }
+        void sumNumbers() {
+            System.out.println(number2 + " + " + innerNumber1 + " = " + instaticnum); // Can't use non-staticvalue in outer class
+        }
+        static void sumNumbers2() {
+            System.out.println(number2 + " + " + 80 + " = " + instaticnum); // Can't use number1 because 
+        } // Can't use non-static variable in innerclass
+
+        // The reason why you cannot access non-static members of the outer class directly from a static inner class is because the non-static members of the outer class are associated with a specific instance of the outer class, and you cannot reference them without an instance of the outer class.
     }
 }

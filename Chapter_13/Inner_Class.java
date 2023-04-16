@@ -18,6 +18,7 @@ public class Inner_Class {
 
         Runnable runner = test.getRunnable();
         runner.run();
+        test.Runner.run();
 
     }
 }

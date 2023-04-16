@@ -54,10 +54,10 @@ public class OutClass {
         // The reason why you cannot access non-static members of the outer class directly from a static inner class is because the non-static members of the outer class are associated with a specific instance of the outer class, and you cannot reference them without an instance of the outer class.
     }
 
-    Runnable getRunnable() {
+    Runnable getRunnable() {    
         int varinMethod = 111;
 
-        class MyRunnable implements Runnable {
+        return new Runnable() { // Anonymous class
             int varInClass = 222;
         
             @Override
@@ -70,7 +70,21 @@ public class OutClass {
                 System.out.println("Static variable in Static inner class : " + InStaticClass.instaticnum);
                 System.out.println("End=====================");
             }
-        }
-        return new MyRunnable();
+        };
     }
+    Runnable Runner = new Runnable() { // another type of Anonymous class
+        int varinMethod = 111;
+        int varInClass = 222;
+        
+        @Override
+        public void run() {
+            System.out.println("Run=====================");
+            System.out.println("Variable in method : " + varinMethod);
+            System.out.println("Variable in class : " + varInClass);
+            System.out.println("Variable in Outter class : " + number1);
+            System.out.println("Static variable in Outter class : " + number2);
+            System.out.println("Static variable in Static inner class : " + InStaticClass.instaticnum);
+            System.out.println("End=====================");
+        }
+    };
 }

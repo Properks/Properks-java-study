@@ -2,6 +2,7 @@ package Chapter_12.Collection.List;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.stream.Stream;
 
 import Chapter_12.Collection.Member;
 
@@ -14,6 +15,11 @@ public class Arraylist {
 
     public Arraylist() {
         memberList = new ArrayList<>();
+    }
+
+    public Stream<Member> stream() {
+        Stream<Member> tempStream = memberList.stream();
+        return tempStream;
     }
 
     public void addMember(Member m) {

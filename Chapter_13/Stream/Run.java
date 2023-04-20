@@ -2,11 +2,29 @@ package Chapter_13.Stream;
 
 import Chapter_12.Collection.*;
 import Chapter_12.Collection.List.Arraylist;
+
+import java.util.function.BinaryOperator;
 import java.util.stream.Stream;
 
 /**
  * Run
  */
+/**
+ * ComapareString
+ */
+class ComapareString implements BinaryOperator<Member> {
+
+    @Override
+    public Member apply(Member s1, Member s2) {
+        if (s1.getMemberID() > s2.getMemberID()) {
+            return s1;
+        }
+        else {
+            return s2;
+        }
+    }
+}
+
 public class Run {
 
     public static void main(String[] args) {
@@ -37,5 +55,23 @@ public class Run {
         stream = list.stream();
         System.out.println("===============================");
         stream.filter(c -> c.getName().contains("J")).forEach(i -> System.out.println(i.getName())); // Print name constains "J"
+
+        stream = list.stream();
+        System.out.println("===============================");
+        Member identity = new Member(null, 0); // For identity in reduce()
+        Member latestMember = stream.reduce(identity, (s1, s2) -> { // reduece have single result
+            if (s1.getMemberID() > s2.getMemberID()) {
+                return s1;
+            } 
+            else {
+                return s2;
+            }
+        });
+        System.out.println("The latest Member is " + latestMember);
+            
+        stream = list.stream();
+        System.out.println("===============================");
+        System.out.println("The same way : " +stream.reduce(identity, new ComapareString())); // Use Binaryoperator
+
     }
 }

@@ -25,4 +25,9 @@ public class Traveler {
     public int getAge() {
         return age;
     }
+
+    @Override
+    public String toString() {
+        return "Name : " + name + ", Age : " + age;
+    }
 }

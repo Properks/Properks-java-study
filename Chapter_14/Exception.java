@@ -1,5 +1,8 @@
 package Chapter_14;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 /**
  * Exception
  */
@@ -11,19 +14,12 @@ public class Exception {
     // IndexOutOfBoundsException
     public static void main(String[] args) {
 
-        int[] arr = new int[5];
-
         try {
-            for (int i = 0; i <= 5; i++) {
-                arr[i] = i;
-                
-            }
-            System.out.println("This doesn't work");
-        } 
-        catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println(e);
-            System.out.println("Exception handling");
+            FileInputStream file = new FileInputStream("a.txt");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            // System.out.println(e);
+            return;
         }
-        System.out.println("System exit");
     }
 }

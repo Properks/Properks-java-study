@@ -1,5 +1,7 @@
 package Chapter_14;
 
+import java.io.FileNotFoundException;
+
 /**
  * Exception
  */
@@ -11,18 +13,15 @@ public class Exception {
     // IndexOutOfBoundsException
     public static void main(String[] args) {
 
-        AutoClose test = new AutoClose();
-
-        try (test) {
-            
-        } catch (java.lang.Exception e) {
-            System.out.println("Run");
+        ThrowException test = new ThrowException();
+        try {
+            test.loadFile("a.txt", "java.lang.String");
+            System.out.println("Didn't run");
+        } catch (FileNotFoundException | ClassNotFoundException e) { // like if statement
+            System.out.println(e);
+        } catch (java.lang.Exception e) { // like else statement
+            System.out.println(e);
         }
-        System.out.println("\nMake new exception=====================");
-        try (test) {
-            throw new java.lang.Exception();
-        } catch (java.lang.Exception e) {
-            System.out.println("Run");
-        }
+        System.out.println("Run");
     }
 }

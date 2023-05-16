@@ -1,7 +1,7 @@
 package Chapter_15;
 
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.File;
+import java.io.FileOutputStream;
 
 /**
  * Java_Input_Output
@@ -10,38 +10,23 @@ public class Java_Input_Output {
 
     public static void main(String[] args) {
 
-        FileInputStream filestream = null;
-        int i; // input 
-        try {
-            filestream = new FileInputStream("Chapter_15/Input.txt"); // print word
-            System.out.println("Word : ");
-            while ((i = filestream.read()) != ' ') {
-                System.out.print((char)i);
+        File file = new File("Chapter_15/Input.txt");
+        int i = 65;
+        try (FileOutputStream output = new FileOutputStream(file)) {
+            for (int j = 0; j < 3; j++) {
+                output.write(i++);
             }
-            System.out.println();
-            System.out.println();
-            
-            System.out.println("Sentence : ");
-            filestream.close();
-            filestream = new FileInputStream("Chapter_15/Input.txt"); // print sentence
-
-            while ((i = filestream.read()) != '\n' && i != '.' && i != '?' && i != '!') {
-                System.out.print((char)i);
-            }
-            System.out.println();
-            System.out.println();
-            
-            System.out.println("All : ");
-            filestream.close();
-            filestream = new FileInputStream("Chapter_15/Input.txt"); // print all
-            
-            while ((i = filestream.read()) != -1) {
-                System.out.print((char)i);
-            }
-            System.out.println();
-        } 
-        catch (IOException e) {
-            System.out.println(e);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+        try (FileOutputStream appendFileOutputStream = new FileOutputStream(file, true)) {
+            for (int j = 0; j < 3; j++) {
+                appendFileOutputStream.write(i++);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("Print success");
     }
 }

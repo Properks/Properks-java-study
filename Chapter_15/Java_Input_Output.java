@@ -1,7 +1,9 @@
 package Chapter_15;
 
+import java.io.Console;
 import java.io.File;
-import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  * Java_Input_Output
@@ -10,29 +12,27 @@ public class Java_Input_Output {
 
     public static void main(String[] args) {
 
-        File file = new File("Chapter_15/Input.txt");
-        byte[] alphabets = new byte[26];
-        byte initialValue = 65;
-        try (FileOutputStream output = new FileOutputStream(file)) {
-            for (int i = 0; i < 26; i++) {
-                alphabets[i] = initialValue++;
-            }
-            output.write(alphabets);
-            output.write('\n');
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Console Inputconsole = System.console();
+        String buffer = Inputconsole.readLine();
+        File Filename = new File("Chapter_15/" + buffer);
 
-        initialValue = 97;
-        try (FileOutputStream appendFileOutputStream = new FileOutputStream(file, true)) {
-            for (int i = 0; i < 26; i++) {
-                alphabets[i] = initialValue++;
-            }
-            appendFileOutputStream.write(alphabets, 0, 13);
-            appendFileOutputStream.write('\n');
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (Filename.exists()) {
+            System.err.println(Filename + " already exist");
+            return;
         }
-        System.out.println("Print success");
+        try (FileWriter writer = new FileWriter(Filename)) {
+            System.out.println("Success to make file");
+            String c;
+            while (true) {
+                c = Inputconsole.readLine();
+                if (c.equals(":wq")){
+                    break;
+                }
+                writer.write(c + '\n');
+            }
+            System.out.println("Success Input");
+        } catch (IOException e) {
+            System.out.println(e + " : Can't make file as " + Filename);
+        }
     }
 }

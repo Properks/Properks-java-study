@@ -11,19 +11,25 @@ public class Java_Input_Output {
     public static void main(String[] args) {
 
         File file = new File("Chapter_15/Input.txt");
-        int i = 65;
+        byte[] alphabets = new byte[26];
+        byte initialValue = 65;
         try (FileOutputStream output = new FileOutputStream(file)) {
-            for (int j = 0; j < 3; j++) {
-                output.write(i++);
+            for (int i = 0; i < 26; i++) {
+                alphabets[i] = initialValue++;
             }
+            output.write(alphabets);
+            output.write('\n');
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        initialValue = 97;
         try (FileOutputStream appendFileOutputStream = new FileOutputStream(file, true)) {
-            for (int j = 0; j < 3; j++) {
-                appendFileOutputStream.write(i++);
+            for (int i = 0; i < 26; i++) {
+                alphabets[i] = initialValue++;
             }
+            appendFileOutputStream.write(alphabets, 0, 13);
+            appendFileOutputStream.write('\n');
         } catch (Exception e) {
             e.printStackTrace();
         }

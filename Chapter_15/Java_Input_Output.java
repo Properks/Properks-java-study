@@ -15,11 +15,7 @@ public class Java_Input_Output {
         Console Inputconsole = System.console();
         String buffer = Inputconsole.readLine();
         File Filename = new File("Chapter_15/" + buffer);
-
-        if (!Filename.exists()) {
-            System.err.println("Can't find " + Filename);
-            return;
-        }
+        
         try (FileReader reader = new FileReader(Filename)) {
             int i;
             while ((i = reader.read()) != -1) {

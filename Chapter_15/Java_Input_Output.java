@@ -2,7 +2,7 @@ package Chapter_15;
 
 import java.io.Console;
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileReader;
 import java.io.IOException;
 
 /**
@@ -16,23 +16,18 @@ public class Java_Input_Output {
         String buffer = Inputconsole.readLine();
         File Filename = new File("Chapter_15/" + buffer);
 
-        if (Filename.exists()) {
-            System.err.println(Filename + " already exist");
+        if (!Filename.exists()) {
+            System.err.println("Can't find " + Filename);
             return;
         }
-        try (FileWriter writer = new FileWriter(Filename)) {
-            System.out.println("Success to make file");
-            String c;
-            while (true) {
-                c = Inputconsole.readLine();
-                if (c.equals(":wq")){
-                    break;
-                }
-                writer.write(c + '\n');
+        try (FileReader reader = new FileReader(Filename)) {
+            int i;
+            while ((i = reader.read()) != -1) {
+                System.out.print((char)i);
             }
-            System.out.println("Success Input");
+            System.out.println();
         } catch (IOException e) {
-            System.out.println(e + " : Can't make file as " + Filename);
+            e.printStackTrace();
         }
     }
 }

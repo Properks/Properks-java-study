@@ -12,23 +12,26 @@ import java.io.ObjectOutputStream;
  */
 public class Serialization {
 
-    public static void main(String[] args) throws ClassNotFoundException{ // For readObject()
+    public static void main(String[] args) throws IOException, ClassNotFoundException{ // For readObject()
         
         
         File filePath = new File("Chapter_15/Serialization/serial.out");
         Person Jay = new Person("Jay", "Professor");
         Person Wilson = new Person("Wilson", "Doctor");
-            
-        try (FileOutputStream fileOut = new FileOutputStream(filePath); 
-            ObjectOutputStream objOut = new ObjectOutputStream(fileOut)){
-                objOut.writeObject(Jay);
-                objOut.writeObject(Wilson);
+
+        FileOutputStream fileOut = new FileOutputStream(filePath); 
+        ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
+        try (fileOut; objOut){
+            objOut.writeObject(Jay);
+            objOut.writeObject(Wilson);
         }
         catch (IOException e){
             e.printStackTrace();
         }
-        try (FileInputStream fileInput = new FileInputStream(filePath); 
-            ObjectInputStream objInput = new ObjectInputStream(fileInput)) {
+
+        FileInputStream fileInput = new FileInputStream(filePath); 
+        ObjectInputStream objInput = new ObjectInputStream(fileInput);
+        try (fileInput; objInput) {
                 Person p1 = (Person)objInput.readObject(); // return type of readObject() is object
                 Person p2 = (Person)objInput.readObject();
                 System.out.println(p1);
@@ -37,5 +40,6 @@ public class Serialization {
             e.printStackTrace();
         }
 
+        filePath.delete();
     }
 }

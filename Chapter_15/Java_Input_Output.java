@@ -18,5 +18,6 @@ public class Java_Input_Output {
         DataWritestream.writeData(3.14f);
         DataWritestream.writeData("Test");
 
+        DataWritestream.Output();
     }
 }

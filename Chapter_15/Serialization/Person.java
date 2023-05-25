@@ -7,8 +7,9 @@ import java.io.Serializable;
  */
 public class Person implements Serializable{ // Need to mark it can use to Serialization
 
+    private final static long serialVersionUID = 1L; // version ID for serialization
     String name;
-    String job;
+    String job; // If you wanna ignore serialization, use transient like `transient String job`
 
     public Person() {}
 
@@ -22,6 +23,7 @@ public class Person implements Serializable{ // Need to mark it can use to Seria
         this.job = job;
     }
 
+    @Override
     public String toString() {
         return "(" + this.name + ", " + this.job + ")";
     }

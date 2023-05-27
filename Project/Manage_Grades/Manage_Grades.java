@@ -14,7 +14,16 @@ public class Manage_Grades {
     public static void main(String[] args) {
         TreeSet<Students> StudentList = new TreeSet<>();
         
-        SetStudentID(StudentList);
+        StudentList.add(new Students("Andrew", commonconstants.MajorList.get(0)));
+        StudentList.add(new Students("Asher", commonconstants.MajorList.get(1)));
+        StudentList.add(new Students("Benjamin", commonconstants.MajorList.get(2)));
+        StudentList.add(new Students("Eric", commonconstants.MajorList.get(0)));
+        StudentList.add(new Students("George", commonconstants.MajorList.get(2)));
+        StudentList.add(new Students("Henry", commonconstants.MajorList.get(0)));
+        StudentList.add(new Students("Harry", commonconstants.MajorList.get(1)));
+        StudentList.add(new Students("James", commonconstants.MajorList.get(1)));
+
+        SetAllOfStudentID(StudentList);
         for (Students students : StudentList) {
             System.out.println(students);
         }
@@ -24,8 +33,24 @@ public class Manage_Grades {
         List.add(new Students(name, Major));
     }
 
-    public static void SetStudentID(TreeSet<Students> StudentList) {
+    public static void SetAllOfStudentID(TreeSet<Students> StudentList) {
         Iterator<Students> ir= StudentList.iterator();
-        
+        Students nextTemp, temp = ir.next(); // Set 2 Students to compare
+        int Lastnumber = 1, ID;
+        while (ir.hasNext()) {
+            ID = commonconstants.Year * 100000 + commonconstants.MajorStudentID.get(temp.getMajor()) * 100 + Lastnumber;
+            temp.SetStudentID(ID);
+
+            nextTemp = ir.next(); // Increment operator
+            if (nextTemp.getMajor().compareTo(temp.getMajor()) == 0) { // If major of student in temp is same as major of Next student
+                Lastnumber++;
+            }
+            else { // Doesn't same
+                Lastnumber = 1;
+            }
+            temp = nextTemp; // Set temp like Increment operator
+        }
+        ID = commonconstants.Year * 100000 + commonconstants.MajorStudentID.get(temp.getMajor()) * 100 + Lastnumber;
+        temp.SetStudentID(ID);
     }
 }

@@ -18,6 +18,10 @@ public class Students implements Comparable<Students>{
         this.Major = Major;
     }
 
+    public void SetStudentID(int StudentID) {
+        this.StudentID = StudentID;
+    }
+
     public String getName() {
         return this.name;
     }
@@ -38,7 +42,7 @@ public class Students implements Comparable<Students>{
     @Override
     public int compareTo(Students o) {
         if (this.Major.compareTo(o.Major) == 0) {
-            return this.StudentID - o.StudentID;
+            return this.name.compareTo(o.name);
         }
         return this.Major.compareTo(o.Major);
     }

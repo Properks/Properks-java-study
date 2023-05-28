@@ -29,10 +29,6 @@ public class Manage_Grades {
         }
     }
 
-    public static void AddInList(TreeSet<Students> List, String name, String Major) {
-        List.add(new Students(name, Major));
-    }
-
     public static void SetAllOfStudentID(TreeSet<Students> StudentList) {
         Iterator<Students> ir= StudentList.iterator();
         Students nextTemp, temp = ir.next(); // Set 2 Students to compare
@@ -53,4 +49,5 @@ public class Manage_Grades {
         ID = commonconstants.Year * 100000 + commonconstants.MajorStudentID.get(temp.getMajor()) * 100 + Lastnumber;
         temp.SetStudentID(ID);
     }
+    
 }

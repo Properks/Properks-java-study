@@ -5,4 +5,5 @@ package Project.Manage_Grades.Interface;
  */
 public interface Calculate_Grade {
 
+    public String setGrade(float GradeOrPercentile);
 }

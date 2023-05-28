@@ -1,15 +1,15 @@
 package Project.Manage_Grades.Class;
 
-import java.util.ArrayList;
+import java.util.TreeMap;
 /**
  * Students
  */
-public class Students implements Comparable<Students>{
+public class Students extends Grade implements Comparable<Students>{
 
     private String name;
     private int StudentID;
     private String Major;
-    private ArrayList<Subject> SubjectList = new ArrayList<>();
+    TreeMap<Subject, Grade> Subjectlist = new TreeMap<>(); // Subject is mapping grade
 
     public Students() {}
     

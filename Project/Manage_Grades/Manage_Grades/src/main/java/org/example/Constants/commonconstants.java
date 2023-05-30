@@ -1,4 +1,4 @@
-package Project.Manage_Grades.Constants;
+package org.example.Constants;
 
 import java.util.List;
 import java.util.Map;

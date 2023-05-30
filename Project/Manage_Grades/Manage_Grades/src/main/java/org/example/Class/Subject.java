@@ -1,4 +1,4 @@
-package Project.Manage_Grades.Class;
+package org.example.Class;
 
 /**
  * Subject

@@ -1,6 +1,6 @@
-package Project.Manage_Grades.Class;
+package org.example.Class;
 
-import Project.Manage_Grades.Interface.Calculate_Grade;
+import org.example.Interface.Calculate_Grade;
 /**
  * Relative
  */

@@ -1,4 +1,4 @@
-package Project.Manage_Grades.Interface;
+package org.example.Interface;
 
 /**
  * Calculate_Grade

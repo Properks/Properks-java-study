@@ -1,19 +1,19 @@
-package Project.Manage_Grades;
+package org.example;
 
-import Project.Manage_Grades.Interface.*;
-import Project.Manage_Grades.Class.*;
-import Project.Manage_Grades.Constants.*;
+import org.example.Class.*;
+import org.example.Interface.*;
+import org.example.Constants.*;
 
 import java.util.Iterator;
 import java.util.TreeSet;
 /**
  * Manage_Grades
  */
-public class Manage_Grades {
+public class Main {
 
     public static void main(String[] args) {
         TreeSet<Students> StudentList = new TreeSet<>();
-        
+
         StudentList.add(new Students("Andrew", commonconstants.MajorList.get(0)));
         StudentList.add(new Students("Asher", commonconstants.MajorList.get(1)));
         StudentList.add(new Students("Benjamin", commonconstants.MajorList.get(2)));
@@ -47,7 +47,7 @@ public class Manage_Grades {
         ID = commonconstants.Year * 100000 + commonconstants.MajorStudentID.get(temp.getMajor()) * 100 + Lastnumber;
         temp.SetStudentID(ID);
     }
-    
+
     public static void printList(TreeSet<Students> list) {
         for (Students students : list) {
             System.out.println(students);

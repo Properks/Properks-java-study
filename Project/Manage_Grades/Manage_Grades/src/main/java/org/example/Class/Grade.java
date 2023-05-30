@@ -1,6 +1,7 @@
-package Project.Manage_Grades.Class;
+package org.example.Class;
 
-import Project.Manage_Grades.Constants.commonconstants;
+
+import org.example.Constants.commonconstants;
 
 public class Grade {
     private float Score;

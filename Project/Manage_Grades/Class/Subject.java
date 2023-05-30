@@ -30,6 +30,10 @@ public class Subject { // Separate Grade from subject
     }
 
     @Override
+    public String toString() {
+        return this.name + "(" + this.Credit + ")";
+    }
+    @Override
     public boolean equals(Object obj) {
         if (this.getName().compareTo(((Subject)obj).getName()) == 0 && this.getCredit() == ((Subject)obj).getCredit()) {
             return true;

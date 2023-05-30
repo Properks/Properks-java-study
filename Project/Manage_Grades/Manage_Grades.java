@@ -24,9 +24,7 @@ public class Manage_Grades {
         StudentList.add(new Students("James", commonconstants.MajorList.get(1)));
 
         SetAllOfStudentID(StudentList);
-        for (Students students : StudentList) {
-            System.out.println(students);
-        }
+        printList(StudentList);
     }
 
     public static void SetAllOfStudentID(TreeSet<Students> StudentList) {
@@ -50,4 +48,16 @@ public class Manage_Grades {
         temp.SetStudentID(ID);
     }
     
+    public static void printList(TreeSet<Students> list) {
+        for (Students students : list) {
+            System.out.println(students);
+            System.out.println("Subject : ");
+            Iterator<Subject> ir = students.getList().keySet().iterator();
+            Subject temp;
+            while (ir.hasNext()) {
+                temp = ir.next();
+                System.out.println(temp + " : " + students.getList().get(temp));
+            }
+        }
+    }
 }

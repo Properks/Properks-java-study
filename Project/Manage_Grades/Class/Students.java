@@ -11,7 +11,7 @@ public class Students extends Grade implements Comparable<Students>{
     private int StudentID;
     private String Major;
     TreeMap<Subject, Grade> Subjectlist = new TreeMap<>(); // Subject is mapping grade
-    // TODO: Implement SetSubject and SetGrade each subject
+    
     // Constructor
     public Students() {}
     
@@ -54,6 +54,10 @@ public class Students extends Grade implements Comparable<Students>{
 
     public String getMajor() {
         return this.Major;
+    }
+
+    public TreeMap<Subject, Grade> getList() {
+        return Subjectlist;
     }
 
     @Override

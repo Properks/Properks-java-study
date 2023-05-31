@@ -1,9 +1,11 @@
 package org.example;
 
 import org.example.Class.*;
+import org.example.Data.students;
 import org.example.Interface.*;
 import org.example.Constants.*;
 
+import java.lang.ClassCastException;
 import java.util.Iterator;
 import java.util.TreeSet;
 /**
@@ -11,17 +13,9 @@ import java.util.TreeSet;
  */
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassCastException {
         TreeSet<Students> StudentList = new TreeSet<>();
-
-        StudentList.add(new Students("Andrew", commonconstants.MajorList.get(0)));
-        StudentList.add(new Students("Asher", commonconstants.MajorList.get(1)));
-        StudentList.add(new Students("Benjamin", commonconstants.MajorList.get(2)));
-        StudentList.add(new Students("Eric", commonconstants.MajorList.get(0)));
-        StudentList.add(new Students("George", commonconstants.MajorList.get(2)));
-        StudentList.add(new Students("Henry", commonconstants.MajorList.get(0)));
-        StudentList.add(new Students("Harry", commonconstants.MajorList.get(1)));
-        StudentList.add(new Students("James", commonconstants.MajorList.get(1)));
+        students.setList(StudentList);
 
         SetAllOfStudentID(StudentList);
         printList(StudentList);
@@ -30,21 +24,21 @@ public class Main {
     public static void SetAllOfStudentID(TreeSet<Students> StudentList) {
         Iterator<Students> ir= StudentList.iterator();
         Students nextTemp, temp = ir.next(); // Set 2 Students to compare
-        int Lastnumber = 1, ID;
+        int Last = 1, ID;
         while (ir.hasNext()) {
-            ID = commonconstants.Year * 100000 + commonconstants.MajorStudentID.get(temp.getMajor()) * 100 + Lastnumber;
+            ID = commonconstants.Year * 100000 + commonconstants.MajorStudentID.get(temp.getMajor()) * 100 + Last;
             temp.SetStudentID(ID);
 
             nextTemp = ir.next(); // Increment operator
             if (nextTemp.getMajor().compareTo(temp.getMajor()) == 0) { // If major of student in temp is same as major of Next student
-                Lastnumber++;
+                Last++;
             }
             else { // Doesn't same
-                Lastnumber = 1;
+                Last = 1;
             }
             temp = nextTemp; // Set temp like Increment operator
         }
-        ID = commonconstants.Year * 100000 + commonconstants.MajorStudentID.get(temp.getMajor()) * 100 + Lastnumber;
+        ID = commonconstants.Year * 100000 + commonconstants.MajorStudentID.get(temp.getMajor()) * 100 + Last;
         temp.SetStudentID(ID);
     }
 

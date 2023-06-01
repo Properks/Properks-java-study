@@ -1,8 +1,8 @@
 Data structure with Student and score of them.
 
-1. Grades are relative.
+1. Grades are Absolute.
 2. Students can choose subject.
-3. Members of subject are under 10, subject is abolished;
+3. Members of subject are under 4, subject is abolished;
 4. Grades Percentage: 
     A+: 100 ~ 95
     A:  94 ~ 90

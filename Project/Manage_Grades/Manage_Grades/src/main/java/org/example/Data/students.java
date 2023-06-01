@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class students {
-    public static void setList(TreeSet<Students> list) {
+    public static void setList(TreeSet<Students> list) { // 31 Students
         list.add(new Students("Andrew", commonconstants.MajorList.get(0)));
         list.add(new Students("Asher", commonconstants.MajorList.get(1)));
         list.add(new Students("Benjamin", commonconstants.MajorList.get(2)));

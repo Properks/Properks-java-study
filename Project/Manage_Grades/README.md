@@ -2,7 +2,7 @@ Data structure with Student and score of them.
 
 1. Grades are Absolute.
 2. Students can choose subject.
-3. Members of subject are under 4, subject is abolished;
+3. Members of subject that a student choose are under 4, Student's register is canceled automatically.
 4. Grades Percentage: 
     A+: 100 ~ 95
     A:  94 ~ 90

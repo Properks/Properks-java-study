@@ -10,7 +10,7 @@ public class Students extends Grade implements Comparable<Students>{
     private String name;
     private int StudentID;
     private String Major;
-    TreeMap<Subject, Grade> Subjectlist = new TreeMap<>(); // Subject is mapping grade
+    TreeMap<Subject, Grade> SubjectList = new TreeMap<>(); // Subject is mapping grade
     
     // Constructor
     public Students() {}
@@ -21,8 +21,8 @@ public class Students extends Grade implements Comparable<Students>{
     }
 
     // Subject and score
-    public void addSubject(Subject add) {
-        Iterator<Subject> ir = Subjectlist.keySet().iterator();
+    public void addSubject(Subject add) { // Don't be duplicated
+        Iterator<Subject> ir = SubjectList.keySet().iterator();
         Subject temp;
         while (ir.hasNext()) {
             temp = ir.next();
@@ -31,13 +31,13 @@ public class Students extends Grade implements Comparable<Students>{
                 return;
             }
         }
-        Subjectlist.put(add, new Grade());
+        SubjectList.put(add, new Grade());
     }
 
-    public void setScore(Subject subject, float Score) {
+    public void setScore(Subject subject, float Score) { // Set subject grade each student
         Grade temp = new Grade();
         temp.setScore(subject, Score);
-        Subjectlist.replace(subject, temp);
+        SubjectList.replace(subject, temp);
     }
 
     public void SetStudentID(int StudentID) {
@@ -57,7 +57,7 @@ public class Students extends Grade implements Comparable<Students>{
     }
 
     public TreeMap<Subject, Grade> getList() {
-        return Subjectlist;
+        return SubjectList;
     }
 
     @Override

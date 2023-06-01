@@ -12,12 +12,11 @@ public class Grade {
         if (subject.getType().compareTo(commonconstants.EvaluationType[1]) == 0) {
             this.Grade = new Relative().setGrade(Score);
         }
-        // else if (subject.getType().compareTo(commonconstants.EvaluationType[0]) == 0) {
+        // else if (subject.getType().compareTo(commonconstants.EvaluationType[0]) == 0) { // TODO: implement
         //     this.Grade = new Absolute().setGrade(Score);
         // }
         else {
             System.err.println("Invalid Evaluation type");
-            return;
         }
     }
 

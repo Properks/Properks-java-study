@@ -3,7 +3,7 @@ package org.example.Class;
 /**
  * Subject
  */
-public class Subject { // Separate Grade from subject
+public class Subject implements Comparable<Subject> {// Separate Grade from subject
 
     private String name; // Subject's name
     private int Credit; // 1 ~ 3
@@ -39,5 +39,10 @@ public class Subject { // Separate Grade from subject
             return true;
         }
         return false;
+    }
+
+    @Override
+    public int compareTo(Subject o) {
+        return this.name.compareTo(o.name);
     }
 }

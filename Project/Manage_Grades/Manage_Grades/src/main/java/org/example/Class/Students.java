@@ -34,7 +34,7 @@ public class Students extends Grade implements Comparable<Students>{
         SubjectList.put(add, new Grade());
     }
 
-    public void setScore(Subject subject, float Score) { // Set subject grade each student
+    public void setScoreAndGrade(Subject subject, float Score) { // Set subject grade each student
         Grade temp = new Grade();
         temp.setScore(subject, Score);
         SubjectList.replace(subject, temp);

@@ -21,6 +21,7 @@ public class Main {
         //Set and print
         SetAllOfStudentID(StudentList);
         SetSubjectEachStudent(StudentList, subjectSet);
+        SetGradeEachSubject(StudentList);
         printList(StudentList);
 
         System.out.println("The number of Students : " + StudentList.size());
@@ -55,14 +56,14 @@ public class Main {
             Subject temp;
             while (ir.hasNext()) {
                 temp = ir.next();
-                System.out.println("\t" + temp);
-//                System.out.println("\t" + temp + " : " + students.getList().get(temp));
+//                System.out.println("\t" + temp);
+                System.out.println("\t" + temp + " : " + students.getList().get(temp));
             }
             System.out.println();
         }
     }
 
-    public static void SetSubjectEachStudent(TreeSet<Students> list, Set<Subject> subjectSet) {
+    public static void SetSubjectEachStudent(TreeSet<Students> list, Set<Subject> subjectSet) { // Set subject Randomly
         Random randBool= new Random();
         ArrayList<Students> removeList = new ArrayList<>();
         for (Students student :
@@ -78,9 +79,21 @@ public class Main {
             }
         }
 
-        for (Students student :
+        for (Students student : // Remove student that have under 4 subjects from list
                 removeList) {
              list.remove(student);
+        }
+    }
+    
+    public static void SetGradeEachSubject(TreeSet<Students> list) { // Set Score randomly
+        Random randFloat = new Random();
+        for (Students student :
+                list) {
+            for (Subject subject :
+                    student.getList().keySet()) {
+                float randScore = randFloat.nextFloat(2) + 2.5f; // 2.5 ~ 4.5
+                student.setScoreAndGrade(subject, randScore);
+            }
         }
     }
 }

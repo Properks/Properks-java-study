@@ -1,76 +1,90 @@
 package org.example;
 
-import org.example.Class.*;
-import org.example.Data.*;
-import org.example.Constants.*;
+import org.example.configuration.*;
+import org.example.data.*;
+import org.example.constants.*;
 
-import java.lang.ClassCastException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.*;
+import java.util.logging.Logger;
 
 /**
  * Manage_Grades
  */
 public class Main {
 
-    public static void main(String[] args) throws ClassCastException {
-        // Declare
-        TreeSet<Students> StudentList = new TreeSet<>();
-        students.setList(StudentList);
-        Set<Subject> subjectSet = Set.of(subject.list);
+    private static SecureRandom rand;
+    private static final Logger logger = Logger.getLogger(Main.class.getName());
 
-        //Set and print
-        SetAllOfStudentID(StudentList);
-        SetSubjectEachStudent(StudentList, subjectSet);
-        SetGradeEachSubject(StudentList);
-        printList(StudentList);
-
-        System.out.println("The number of Students : " + StudentList.size());
+    static {
+        try {
+            rand = SecureRandom.getInstanceStrong();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
     }
 
-    public static void SetAllOfStudentID(TreeSet<Students> StudentList) { // Set student ID with rule
-        Iterator<Students> ir= StudentList.iterator();
-        Students nextTemp, temp = ir.next(); // Set 2 Students to compare
-        int Last = 1, ID;
+    public static void main(String[] args) throws ClassCastException {
+        // Declare
+        TreeSet<Students> studentList = new TreeSet<>();
+        StudentsList.setList(studentList);
+        Set<Subject> subjectSet = Set.of(SubjectList.getList());
+
+        //Set and print
+        setAllOfStudentID(studentList);
+        setSubjectEachStudent(studentList, subjectSet);
+        setGradeEachSubject(studentList);
+        printList(studentList);
+
+        logger.info(() -> "The number of Students : " + studentList.size());
+    }
+
+    public static void setAllOfStudentID(Set<Students> studentList) { // Set student ID with rule
+        Iterator<Students> ir= studentList.iterator();
+        Students nextTemp;
+        Students temp = ir.next(); // Set 2 Students to compare
+        int last = 1;
+        int id;
         while (ir.hasNext()) {
-            ID = commonconstants.Year * 100000 + commonconstants.MajorStudentID.get(temp.getMajor()) * 100 + Last;
-            temp.SetStudentID(ID);
+            id = CommonConstants.YEAR * 100000 + CommonConstants.MajorStudentID.get(temp.getMajor()) * 100 + last;
+            temp.setStudentID(id);
 
             nextTemp = ir.next(); // Increment operator
             if (nextTemp.getMajor().compareTo(temp.getMajor()) == 0) { // If major of student in temp is same as major of Next student
-                Last++;
+                last++;
             }
             else { // Doesn't same
-                Last = 1;
+                last = 1;
             }
             temp = nextTemp; // Set temp like Increment operator
         }
-        ID = commonconstants.Year * 100000 + commonconstants.MajorStudentID.get(temp.getMajor()) * 100 + Last; // Last student
-        temp.SetStudentID(ID);
+        id = CommonConstants.YEAR * 100000 + CommonConstants.MajorStudentID.get(temp.getMajor()) * 100 + last; // Last student
+        temp.setStudentID(id);
     }
 
-    public static void printList(TreeSet<Students> list) { // Print list
+    public static void printList(Set<Students> list) { // Print list
         for (Students students : list) {
-            System.out.println(students); // print student info
-            System.out.println("Subject : "); // Print subject
+            logger.info(students::toString);// print student info
+            logger.info("Subject : "); // Print subject
             Iterator<Subject> ir = students.getList().keySet().iterator();
             Subject temp;
             while (ir.hasNext()) {
                 temp = ir.next();
-//                System.out.println("\t" + temp);
-                System.out.println("\t" + temp + " : " + students.getList().get(temp));
+                final Subject tempCopy = temp;
+                logger.info(() -> "\t" + tempCopy + " : " + students.getList().get(tempCopy));
             }
-            System.out.println();
+            logger.info("\n");
         }
     }
 
-    public static void SetSubjectEachStudent(TreeSet<Students> list, Set<Subject> subjectSet) { // Set subject Randomly
-        Random randBool= new Random();
+    public static void setSubjectEachStudent(Set<Students> list, Set<Subject> subjectSet) { // Set subject Randomly
         ArrayList<Students> removeList = new ArrayList<>();
         for (Students student :
                 list) {
             for (Subject subject :
                     subjectSet) {
-                 if (randBool.nextBoolean() && randBool.nextBoolean() && randBool.nextBoolean()) { // probability : 1/2^3
+                 if (rand.nextInt(10) < 2){ // probability : 1/2^3
                      student.addSubject(subject);
                  }
             }
@@ -85,13 +99,12 @@ public class Main {
         }
     }
     
-    public static void SetGradeEachSubject(TreeSet<Students> list) { // Set Score randomly
-        Random randFloat = new Random();
+    public static void setGradeEachSubject(Set<Students> list) { // Set Score randomly
         for (Students student :
                 list) {
             for (Subject subject :
                     student.getList().keySet()) {
-                float randScore = randFloat.nextFloat(2) + 2.5f; // 2.5 ~ 4.5
+                float randScore = rand.nextFloat(2) + 2.5f; // 2.5 ~ 4.5
                 student.setScoreAndGrade(subject, randScore);
             }
         }

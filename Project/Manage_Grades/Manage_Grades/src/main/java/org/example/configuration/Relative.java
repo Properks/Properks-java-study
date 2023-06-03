@@ -1,4 +1,4 @@
-package org.example.Class;
+package org.example.configuration;
 
 import org.example.Interface.Calculate_Grade;
 /**
@@ -7,29 +7,29 @@ import org.example.Interface.Calculate_Grade;
 public class Relative implements Calculate_Grade{
 
     @Override
-    public String setGrade(float GradeOrPercentile) {
-        if (GradeOrPercentile > 0.95f) {
+    public String setGrade(float gradeOrPercentile) {
+        if (gradeOrPercentile > 0.95f) {
             return "A+";
         }
-        else if (GradeOrPercentile > 0.9f) {
+        else if (gradeOrPercentile > 0.9f) {
             return "A";
         }
-        else if (GradeOrPercentile > 0.85f) {
+        else if (gradeOrPercentile > 0.85f) {
             return "B+";
         }
-        else if (GradeOrPercentile > 0.8f) {
+        else if (gradeOrPercentile > 0.8f) {
             return "B";
         }
-        else if (GradeOrPercentile > 0.75f) {
+        else if (gradeOrPercentile > 0.75f) {
             return "C+";
         }
-        else if (GradeOrPercentile > 0.7f) {
+        else if (gradeOrPercentile > 0.7f) {
             return "C";
         }
-        else if (GradeOrPercentile > 0.65f) {
+        else if (gradeOrPercentile > 0.65f) {
             return "D+";
         }
-        else if (GradeOrPercentile > 0.6f) {
+        else if (gradeOrPercentile > 0.6f) {
             return "D";
         }
         else {

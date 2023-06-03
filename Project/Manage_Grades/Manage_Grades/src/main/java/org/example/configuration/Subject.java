@@ -1,4 +1,6 @@
-package org.example.Class;
+package org.example.configuration;
+
+import java.util.Objects;
 
 /**
  * Subject
@@ -6,15 +8,15 @@ package org.example.Class;
 public class Subject implements Comparable<Subject> {// Separate Grade from subject
 
     private String name; // Subject's name
-    private int Credit; // 1 ~ 3
+    private int credit; // 1 ~ 3
     private String type;
 
 
     public Subject() {}
 
-    public Subject(String name, int Credit, String type) {
+    public Subject(String name, int credit, String type) {
         this.name = name;
-        this.Credit = Credit;
+        this.credit = credit;
         this.type = type;
     }
 
@@ -22,7 +24,7 @@ public class Subject implements Comparable<Subject> {// Separate Grade from subj
         return name;
     }
     public int getCredit() {
-        return Credit;
+        return credit;
     }
 
     public String getType() {
@@ -31,14 +33,16 @@ public class Subject implements Comparable<Subject> {// Separate Grade from subj
 
     @Override
     public String toString() {
-        return this.name + "(" + this.Credit + ")";
+        return this.name + "(" + this.credit + ")";
     }
     @Override
     public boolean equals(Object obj) {
-        if (this.getName().compareTo(((Subject)obj).getName()) == 0 && this.getCredit() == ((Subject)obj).getCredit()) {
-            return true;
-        }
-        return false;
+        return (obj instanceof Subject subject) && (this.hashCode() == subject.hashCode());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, credit, type);
     }
 
     @Override

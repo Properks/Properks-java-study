@@ -1,12 +1,13 @@
-package org.example.data;
+package org.example.data; // Folder name is all lower case
 
 import org.example.constants.CommonConstants;
 import org.example.configuration.Subject;
 
-public class SubjectList {
+public class SubjectList { // Class name's first letter is capital
 
-    private SubjectList() {}
-    private static final Subject[] list = { // 27 Subjects
+    private SubjectList() {} // This class doesn't have public constructor. But java add an implicit public
+    // constructor. So, I need to make at least one private constructor
+    private static final Subject[] list = { // 27 Subjects + // If it is declared with public, It can be modified
             new Subject("Art and Globalization", 3, CommonConstants.getType(1)),
             new Subject("Emerging Humanity", 3, CommonConstants.getType(1)),
             new Subject("Peoples and Cultures of Africa", 3, CommonConstants.getType(1)),

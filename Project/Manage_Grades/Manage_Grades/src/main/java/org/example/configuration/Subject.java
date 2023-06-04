@@ -1,4 +1,4 @@
-package org.example.configuration;
+package org.example.configuration; // Folder name is all lower case
 
 import java.util.Objects;
 
@@ -9,7 +9,7 @@ public class Subject implements Comparable<Subject> {// Separate Grade from subj
 
     private String name; // Subject's name
     private int credit; // 1 ~ 3
-    private String type;
+    private String type; // Variable's first letter is lower, and space is upper instead of '_'
 
 
     public Subject() {}
@@ -37,11 +37,12 @@ public class Subject implements Comparable<Subject> {// Separate Grade from subj
     }
     @Override
     public boolean equals(Object obj) {
-        return (obj instanceof Subject subject) && (this.hashCode() == subject.hashCode());
+        return (obj instanceof Subject subject) && (this.hashCode() == subject.hashCode()); // Don't use if
+        // statement, Just return like this
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode() { // Need it to use equals
         return Objects.hash(name, credit, type);
     }
 

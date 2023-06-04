@@ -1,11 +1,11 @@
-package org.example.configuration;
+package org.example.configuration; // Folder name is all lower case
 
-import org.example.Interface.Calculate_Grade;
+import org.example.interfaces.CalculateGrade;
 
 /**
  * Absolute
  */
-public class Absolute implements Calculate_Grade{
+public class Absolute implements CalculateGrade {
 
     @Override
     public String setGrade(float gradeOrPercentile) { // it is Grade in this function

@@ -1,4 +1,4 @@
-package org.example.configuration;
+package org.example.configuration; // Folder name is all lower case
 
 import java.util.Map;
 import java.util.Objects;
@@ -11,14 +11,15 @@ import java.util.logging.Logger;
  */
 public class Students extends Grade implements Comparable<Students>{
 
+    private static final Logger logger = Logger.getLogger(Students.class.getName());
     private String name;
-    private int studentID;
+    private int studentID; // Variable's first letter is lower, and space is upper instead of '_'
     private String major;
-    TreeMap<Subject, Grade> subjectList = new TreeMap<>(); // Subject is mapping grade
+    Map<Subject, Grade> subjectList = new TreeMap<>(); // Subject is mapping grade
     
     // Constructor
     public Students() {}
-    
+
     public Students(String name, String major) {
         this.name = name;
         this.major = major;
@@ -31,7 +32,7 @@ public class Students extends Grade implements Comparable<Students>{
         while (ir.hasNext()) {
             temp = ir.next();
             if (temp.equals(add)) {
-                Logger.getLogger(this.getClass().getName()).warning(() -> add.getName() + " already have....");
+                logger.warning(() -> add.getName() + " already have....");
                 return;
             }
         }
@@ -78,13 +79,13 @@ public class Students extends Grade implements Comparable<Students>{
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o) { // Need it to use compareTo
         if (o == null) return false;
         return (o instanceof Students student) && (this.hashCode() == student.hashCode());
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode() { // Need it to use equals
         return Objects.hash(name, studentID, major, subjectList);
     }
 }

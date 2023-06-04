@@ -1,4 +1,4 @@
-package org.example.configuration;
+package org.example.configuration; // Folder name is all lower case
 
 
 import org.example.constants.CommonConstants;
@@ -7,8 +7,10 @@ import java.text.NumberFormat;
 import java.util.logging.Logger;
 
 public class Grade {
-    private float score;
-    private String achievement;
+
+    private static final Logger logger = Logger.getLogger(Grade.class.getName());
+    private float score; // Variable's first letter is lower, and space is upper instead of '_'
+    private String achievement; // Variable's first letter is lower, and space is upper instead of '_'
 
     public void setScore(Subject subject, float score) {
         this.score = score;
@@ -17,7 +19,7 @@ public class Grade {
         }
         // TODO: implement Relative
         else {
-            Logger.getLogger(this.getClass().getName()).warning("Invalid Evaluation type");
+            logger.warning("Invalid Evaluation type");
         }
     }
 
@@ -30,7 +32,7 @@ public class Grade {
     }
 
     public static String getScoreFormat(float score) {
-        NumberFormat scoreFormat = NumberFormat.getInstance();
+        NumberFormat scoreFormat = NumberFormat.getInstance(); // Show up to 2 decimal places
         scoreFormat.setMaximumFractionDigits(2);
         return scoreFormat.format(score);
     }

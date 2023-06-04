@@ -14,20 +14,20 @@ import java.util.logging.Logger;
  */
 public class Main {
 
-    private static SecureRandom rand;
+    private static SecureRandom rand; // Use SecureRandom with private static variable in class(not function)
     private static final Logger logger = Logger.getLogger(Main.class.getName());
 
-    static {
-        try {
+    static { // Because rand is static variable
+        try { // try-catch NoSuchAlgorithmException
             rand = SecureRandom.getInstanceStrong();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
     }
 
-    public static void main(String[] args) throws ClassCastException {
+    public static void main(String[] args) {
         // Declare
-        TreeSet<Students> studentList = new TreeSet<>();
+        Set<Students> studentList = new TreeSet<>();
         StudentsList.setList(studentList);
         Set<Subject> subjectSet = Set.of(SubjectList.getList());
 
@@ -40,7 +40,8 @@ public class Main {
         logger.info(() -> "The number of Students : " + studentList.size());
     }
 
-    public static void setAllOfStudentID(Set<Students> studentList) { // Set student ID with rule
+    public static void setAllOfStudentID(Set<Students> studentList) { // Set student ID with rule + It is ideal, If
+        // Param and argue is interface
         Iterator<Students> ir= studentList.iterator();
         Students nextTemp;
         Students temp = ir.next(); // Set 2 Students to compare
@@ -63,22 +64,19 @@ public class Main {
         temp.setStudentID(id);
     }
 
-    public static void printList(Set<Students> list) { // Print list
+    public static void printList(Set<Students> list) { // Print list + It is ideal, If Param and argue is interface
         for (Students students : list) {
             logger.info(students::toString);// print student info
             logger.info("Subject : "); // Print subject
-            Iterator<Subject> ir = students.getList().keySet().iterator();
-            Subject temp;
-            while (ir.hasNext()) {
-                temp = ir.next();
-                final Subject tempCopy = temp;
-                logger.info(() -> "\t" + tempCopy + " : " + students.getList().get(tempCopy));
+            for (Subject temp : students.getList().keySet()) { // Fix it with for loop statement
+                logger.info(() -> "\t" + temp + " : " + students.getList().get(temp));
+                // TODO: When do I use final and ::toString in lamda
             }
             logger.info("\n");
         }
     }
 
-    public static void setSubjectEachStudent(Set<Students> list, Set<Subject> subjectSet) { // Set subject Randomly
+    public static void setSubjectEachStudent(Set<Students> list, Set<Subject> subjectSet) { // Set subject Randomly + It is ideal, If Param and argue is interface
         ArrayList<Students> removeList = new ArrayList<>();
         for (Students student :
                 list) {
@@ -99,7 +97,7 @@ public class Main {
         }
     }
     
-    public static void setGradeEachSubject(Set<Students> list) { // Set Score randomly
+    public static void setGradeEachSubject(Set<Students> list) { // Set Score randomly + It is ideal, If Param and argue is interface
         for (Students student :
                 list) {
             for (Subject subject :

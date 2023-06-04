@@ -1,14 +1,15 @@
-package org.example.data;
+package org.example.data; // Folder name is all lower case
 
 import org.example.configuration.Students;
 import org.example.constants.CommonConstants;
 
 import java.util.Set;
 
-public class StudentsList {
+public class StudentsList { // Class name's first letter is capital
 
-    private StudentsList() {}
-    public static void setList(Set<Students> list) { // 31 Students
+    private StudentsList() {} // This class doesn't have public constructor. But java add an implicit public
+    // constructor. So, I need to make at least one private constructor
+    public static void setList(Set<Students> list) { // 31 Students + It is ideal, If Param and argue is interface
         list.add(new Students("Andrew", CommonConstants.MajorList.get(0)));
         list.add(new Students("Asher", CommonConstants.MajorList.get(1)));
         list.add(new Students("Benjamin", CommonConstants.MajorList.get(2)));

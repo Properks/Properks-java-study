@@ -1,6 +1,7 @@
 package org.jeongmo;
 
 import org.jeongmo.sorting.BubbleSort;
+import org.jeongmo.sorting.MergeSort;
 import org.jeongmo.sorting.QuickSort;
 
 import java.security.NoSuchAlgorithmException;
@@ -23,7 +24,7 @@ public class Main {
     }
     public static void main(String[] args) {
 
-        QuickSort sortAlgorithm = new QuickSort();
+        MergeSort sortAlgorithm = new MergeSort();
         final Integer[] list = new Integer[MAX_SIZE];
         setArray(list);
 

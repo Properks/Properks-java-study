@@ -3,6 +3,7 @@ package org.jeongmo;
 import org.jeongmo.sorting.BubbleSort;
 import org.jeongmo.sorting.MergeSort;
 import org.jeongmo.sorting.QuickSort;
+import org.jeongmo.sorting.SelectionSort;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -24,7 +25,7 @@ public class Main {
     }
     public static void main(String[] args) {
 
-        MergeSort sortAlgorithm = new MergeSort();
+        SelectionSort sortAlgorithm = new SelectionSort();
         final Integer[] list = new Integer[MAX_SIZE];
         setArray(list);
 

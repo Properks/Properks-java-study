@@ -82,7 +82,7 @@ public class Main {
                 list) {
             for (Subject subject :
                     subjectSet) {
-                 if (rand.nextInt(10) < 2){ // probability : 1/2^3
+                 if (rand.nextInt(10) < 2){ // probability : 1/5
                      student.addSubject(subject);
                  }
             }

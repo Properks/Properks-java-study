@@ -9,7 +9,8 @@ public class Heap {
 
     public Heap(int size) {
         data = new Integer[size + 1];
-        count = 1;
+        data[0] = null;
+        count = 0;
     }
 
     private void bottomUp(int index) {
@@ -40,5 +41,17 @@ public class Heap {
             UtilForSort.swap(data, index, 2 * index + 1);
             topDown(2 * index + 1);
         }
+    }
+
+    public void addElement(Integer element) {
+        data[++count] = element;
+        bottomUp(count);
+    }
+
+    public Integer pop() {
+        Integer temp = data[1];
+        data[1] = data[count];
+        topDown(1);
+        return temp;
     }
 }

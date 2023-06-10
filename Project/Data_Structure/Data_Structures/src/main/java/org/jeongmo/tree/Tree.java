@@ -9,7 +9,8 @@ public class Tree {
 
     private static final Logger logger = Logger.getLogger(Tree.class.getName());
 
-    public Tree() {}
+    public Tree() {
+    }
 
     public Tree(int value) {
         this.value = value;

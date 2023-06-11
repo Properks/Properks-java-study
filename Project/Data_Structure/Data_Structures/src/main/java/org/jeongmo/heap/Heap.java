@@ -54,4 +54,15 @@ public class Heap {
         topDown(1);
         return temp;
     }
+
+    public void heapSort() {
+        Integer[] temp = new Integer[count + 1];
+        for (int i = 1; i < count + 1; i++) {
+            temp[i] = this.pop();
+        }
+
+        for (int i = 1; i < count + 1; i++) {
+            this.addElement(temp[i]);
+        }
+    }
 }

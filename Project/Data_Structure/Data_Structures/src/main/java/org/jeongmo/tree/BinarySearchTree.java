@@ -4,19 +4,17 @@ import java.util.logging.Logger;
 
 public class BinarySearchTree {
 
-
-    public Tree addElement(Tree tree, int value) {
-        if (tree == null) {
-            tree = new Tree(value);
+    Tree root;
+    public Tree addElement(Tree node, int value) {
+        if (node == null) {
+            node = new Tree(value);
+        } else if (node.value > value) {
+            node = addElement(node.left, value);
+        } else if (node.value < value) {
+            node = addElement(node.right, value);
         }
 
-        if (tree.value > value) {
-            addElement(tree.right, value);
-        } else if (tree.value < value) {
-             addElement(tree.left, value);
-        }
-
-        return tree;
+        return node;
     }
 
     public boolean search(Tree tree, int value) {

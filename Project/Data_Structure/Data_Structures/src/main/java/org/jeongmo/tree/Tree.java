@@ -23,29 +23,29 @@ public class Tree {
         this.right = right;
     }
 
-    public void inorder(Tree list) {
+    public static void inorder(Tree list) {
 
         if (list != null) {
             inorder(list.left);
-            logger.info(() -> String.valueOf(this.value));
+            logger.info(() -> String.valueOf(list.value));
             inorder(list.right);
         }
     }
-    public void preorder(Tree list) {
+    public static void preorder(Tree list) {
 
         if (list != null) {
-            logger.info(() -> String.valueOf(this.value));
+            logger.info(() -> String.valueOf(list.value));
             preorder(list.left);
             preorder(list.right);
         }
     }
 
-    public void postorder(Tree list) {
+    public static void postorder(Tree list) {
 
         if (list != null) {
             postorder(list.left);
             postorder(list.right);
-            logger.info(() -> String.valueOf(this.value));
+            logger.info(() -> String.valueOf(list.value));
         }
     }
 

@@ -4,16 +4,33 @@ import java.util.logging.Logger;
 
 public class BinarySearchTree {
 
+    public static void main(String[] args) {
+        BinarySearchTree bst = new BinarySearchTree(27);
+        bst.root = bst.addElement(bst.getRoot(), 20);
+        bst.root = bst.addElement(bst.getRoot(), 10);
+        bst.root = bst.addElement(bst.getRoot(), 14);
+        bst.root = bst.addElement(bst.getRoot(), 32);
+        Tree.inorder(bst.getRoot());
+
+    }
     Tree root;
+
+    public BinarySearchTree() {
+        root = null;
+    }
+
+    public BinarySearchTree(int value) {
+        root = new Tree(value);
+    }
+
     public Tree addElement(Tree node, int value) {
         if (node == null) {
             node = new Tree(value);
         } else if (node.value > value) {
-            node = addElement(node.left, value);
+            node.left = addElement(node.left, value);
         } else if (node.value < value) {
-            node = addElement(node.right, value);
+            node.right = addElement(node.right, value);
         }
-
         return node;
     }
 
@@ -29,5 +46,9 @@ public class BinarySearchTree {
         } else {
             return search(tree.left, value);
         }
+    }
+
+    public Tree getRoot() {
+        return root;
     }
 }

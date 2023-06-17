@@ -23,6 +23,18 @@ public class Tree {
         this.right = right;
     }
 
+    public Tree(Tree scr) {
+        this.value = scr.value;
+        this.left = null;
+        this.right = null;
+        if (scr.left != null) {
+            this.left = new Tree(scr.left.value, scr.left.left, scr.left.right);
+        }
+        if (scr.right != null) {
+            this.right = new Tree(scr.right.value, scr.right.left, scr.right.right);
+        }
+    }
+
     public static void inorder(Tree list) {
 
         if (list != null) {
@@ -48,5 +60,7 @@ public class Tree {
             logger.info(() -> String.valueOf(list.value));
         }
     }
+
+
 
 }

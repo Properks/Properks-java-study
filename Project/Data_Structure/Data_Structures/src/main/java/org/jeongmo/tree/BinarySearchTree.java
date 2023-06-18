@@ -16,12 +16,14 @@ public class BinarySearchTree {
         bst.root = bst.addElement(bst.getRoot(), 29);
         bst.root = bst.addElement(bst.getRoot(), 25);
         bst.root = bst.addElement(bst.getRoot(), 35);
+
         if (bst.search(bst.getRoot(), 14)) {
             logger.info("14 is in tree");
         }
-        logger.info(() -> String.valueOf(bst.getMax(bst.getRoot())));
-        Tree.inorder(bst.getRoot());
 
+        Tree.inorder(bst.getRoot());
+        bst.remove(bst.getRoot(), 14);
+        Tree.inorder(bst.getRoot());
     }
     Tree root;
 
@@ -58,35 +60,34 @@ public class BinarySearchTree {
         }
     }
 
-    public boolean remove(Tree tree, int value) {
-        if (tree == null){
-            return false;
+    public Tree remove(Tree tree, int value) {
+        if (tree == null) {
+            logger.info(() -> "Can't found" + value);
+            return null;
         }
 
         if (tree.value == value) {
-            return true;
+            if (tree.left == null && tree.right == null) {
+                return null;
+            } else if (tree.right != null && tree.left != null) {
+                tree.value = getMax(tree.left);
+                tree.left = remove(tree.left, tree.value);
+            } else if (tree.right == null) {
+                tree.value = tree.left.value;
+                tree.left = tree.left.left;
+                tree.right = tree.left.right;
+            } else {
+                tree.value = tree.right.value;
+                tree.left = tree.right.left;
+                tree.right = tree.right.right;
+            }
+        } else if (tree.value > value) {
+            tree.left = remove(tree.left, value);
         }
-//        else if (tree.value > value) {
-//            if (remove(tree.left, value)) {
-//                if (tree.right == null) {
-//                    tree = new Tree(tree.left);
-//                    return false;
-//                }
-//                else {
-//
-//                }
-//            }
-//        }
-//        else {
-//            return remove(tree.right, value);
-//            if (remove(tree.left, value)) {
-//                if (tree.right == null) {
-//                    tree = new Tree(tree.left);
-//                    return false;
-//                }
-//            }
-//        }
-        return false;
+        else {
+            tree.right = remove(tree.right, value);
+        }
+        return tree;
     }
 
     public int getMax(Tree tree) {

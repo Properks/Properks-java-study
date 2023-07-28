@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -30,13 +29,19 @@ class MainTest {
     void over100() {
         int number = 100;
         int weight = 100;
+        int maxValuable = 0;
         Main.Luggage[] luggage = new Main.Luggage[100];
 
         for (int i = 0; i< 100; i++) {
-            luggage[i] = new Main.Luggage(1, rand.nextInt(10));
+            int value = rand.nextInt(10);
+            luggage[i] = new Main.Luggage(1, value);
+            maxValuable += value;
         }
 
+
+
         int max = Main.getMaxValuable(luggage, number, weight);
-        System.out.println(max);
+
+        assertEquals(maxValuable, max);
     }
 }

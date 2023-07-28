@@ -1,11 +1,7 @@
 package org.example;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
 public class Main {
 
@@ -47,26 +43,28 @@ public class Main {
     }
 
     public static int getMaxValuable(Luggage[] luggages, int number, int totalWeight) {
-        int maxValue = 0;
-        int dpIndex;
-        for (int i = 0; i < number; i++) {
-            int[] dpValuable = new int[1 << number]; // index error when number is over 100
-            int[] dpWeight = new int[1 << number];
-            dpIndex = 0;
-            dpWeight[dpIndex] = luggages[i].getWeight();
-            dpValuable[dpIndex] = luggages[i].getValuable();
-            for (int j = i+1; j < number; j++) {
-                int currentIndex = dpIndex + 1;
-                for (int k = 0; k < currentIndex; k++) {
-                    if (dpWeight[k] + luggages[j].getWeight() <= totalWeight) {
-                        dpWeight[dpIndex + 1] = dpWeight[k] + luggages[j].getWeight();
-                        dpValuable[dpIndex + 1] = dpValuable[k] + luggages[j].getValuable();
-                        dpIndex++;
-                    }
-                }
+        Arrays.sort(luggages, Comparator.comparingInt(Luggage::getValuable).reversed());
+        int i = 0;
+        int currentValuable = 0;
+        int currentWeight = 0;
+        while ((i < number) && (currentWeight <= totalWeight)) {
+            if (currentWeight + luggages[i].getWeight() <= totalWeight) {
+                currentWeight += luggages[i].getWeight();
+                currentValuable += luggages[i].getValuable();
             }
-            maxValue = Math.max(maxValue, Arrays.stream(dpValuable).max().getAsInt());
+            i++;
         }
-        return maxValue;
+        return currentValuable;
+        /*
+        Counter example
+        4 5
+        3 100
+        2 3
+        1 2
+        1 2
+        Value = 103
+        Expected = 104
+        Fail
+         */
     }
 }

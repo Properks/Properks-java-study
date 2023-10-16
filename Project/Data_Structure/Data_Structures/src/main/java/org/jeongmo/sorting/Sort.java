@@ -2,7 +2,7 @@ package org.jeongmo.sorting;
 
 public abstract class Sort {
 
-    private long time;
+    protected long time;
 
     public Sort(){
         this.time = 0L;
@@ -14,5 +14,9 @@ public abstract class Sort {
         T temp = array[first];
         array[first] = array[second];
         array[second] = temp;
+    }
+
+    public long getTime() {
+        return time;
     }
 }

@@ -2,7 +2,7 @@ package org.jeongmo.sorting;
 
 import java.util.Arrays;
 
-public class MergeSort implements SortAlgorithm{
+public class MergeSort extends Sort{
 
     @Override
     public <T extends Comparable<T>> T[] sort(T[] list) {

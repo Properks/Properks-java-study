@@ -1,7 +1,5 @@
 package org.jeongmo.heap;
 
-import org.jeongmo.sorting.UtilForSort;
-
 public class Heap {
 
     Integer[] data;

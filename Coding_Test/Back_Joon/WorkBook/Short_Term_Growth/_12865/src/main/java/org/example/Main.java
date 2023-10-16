@@ -43,28 +43,10 @@ public class Main {
     }
 
     public static int getMaxValuable(Luggage[] luggages, int number, int totalWeight) {
-        Arrays.sort(luggages, Comparator.comparingInt(Luggage::getValuable).reversed());
-        int i = 0;
-        int currentValuable = 0;
-        int currentWeight = 0;
-        while ((i < number) && (currentWeight <= totalWeight)) {
-            if (currentWeight + luggages[i].getWeight() <= totalWeight) {
-                currentWeight += luggages[i].getWeight();
-                currentValuable += luggages[i].getValuable();
-            }
-            i++;
+        int[] dp = new int[totalWeight + 1];
+        for (int i = 0; i < number; i++) {
+
         }
-        return currentValuable;
-        /*
-        Counter example
-        4 5
-        3 100
-        2 3
-        1 2
-        1 2
-        Value = 103
-        Expected = 104
-        Fail
-         */
+
     }
 }

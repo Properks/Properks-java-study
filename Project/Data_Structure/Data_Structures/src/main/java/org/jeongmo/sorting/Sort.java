@@ -1,8 +1,14 @@
 package org.jeongmo.sorting;
 
-public class UtilForSort {
+public abstract class Sort {
 
-    private UtilForSort() {}
+    private long time;
+
+    public Sort(){
+        this.time = 0L;
+    }
+
+    abstract <T extends Comparable<T>> T[] sort(T[] list);
 
     public static <T> void swap(T[] array, int first, int second) {
         T temp = array[first];

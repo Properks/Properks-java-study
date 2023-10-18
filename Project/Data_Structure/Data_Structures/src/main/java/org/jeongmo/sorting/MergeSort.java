@@ -6,44 +6,34 @@ public class MergeSort extends Sort{
 
     @Override
     public <T extends Comparable<T>> T[] sort(T[] list) {
-        doSort(list, 0, list.length - 1);
+        long startedTime = System.nanoTime();
+        mergeSort(list, 0, list.length - 1);
+        this.time = System.nanoTime() - startedTime;
         return list;
     }
 
-    private <T extends Comparable<T>> void doSort(T[] list, int start, int end) {
-        if (start == end) {
-            return;
+    private <T extends Comparable<T>> void mergeSort(T[] list, int left, int right) {
+        if (left < right) {
+            int mid = (left + right) / 2;
+            mergeSort(list, left, mid);
+            mergeSort(list, mid + 1, right);
+            merge(list, left, mid, right);
         }
-
-        int mid = (start + end) / 2;
-        doSort(list, start, mid);
-        doSort(list, mid + 1, end);
-        merge(list, start, mid, mid + 1, end);
     }
 
-    private <T extends Comparable<T>>void merge(T[] list, int leftStart, int leftEnd, int rightStart, int rightEnd) {
-        T[] leftList = Arrays.copyOfRange(list, leftStart, leftEnd + 1);
-        T[] rightList= Arrays.copyOfRange(list, rightStart, rightEnd + 1);
+    private <T extends Comparable<T>> void merge(T[] list, int left, int mid, int right) {
+        T[] newList = Arrays.copyOfRange(list, left, right);
         int leftIndex = 0;
-        int rightIndex = 0;
-        int listIndex = leftStart;
-
-        while (leftIndex < leftList.length && rightIndex < rightList.length) {
-            if (leftList[leftIndex].compareTo(rightList[rightIndex]) > 0) {
-                list[listIndex++] = rightList[rightIndex++];
+        int rightIndex = mid - left + 1;
+        while (left <= right) {
+            while (left <= mid && rightIndex > right) {
+                list[left++] = newList[leftIndex++];
             }
-            else {
-                list[listIndex++] = leftList[leftIndex++];
+            while (left > mid && rightIndex <= right) {
+                list[left++] = newList[rightIndex++];
             }
-        }
-
-        while (listIndex <= rightEnd) {
-            if (leftList.length > leftIndex) {
-                list[listIndex++] = leftList[leftIndex++];
-            }
-            else if (rightList.length > rightIndex) {
-                list[listIndex++] = rightList[rightIndex++];
-            }
+            list[left++] = (newList[leftIndex].compareTo(newList[rightIndex]) <= 0) ?
+                    newList[leftIndex++] : newList[rightIndex];
         }
     }
 }

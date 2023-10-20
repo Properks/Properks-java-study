@@ -13,15 +13,12 @@ public class InsertionSort  extends Sort{
     public <T extends Comparable<T>> void insertionSort(T[] list) {
         for (int i = 1; i < list.length; i++) {
             T value = list[i];
-            for (int j = 0; j < i; j++) {
-                if (list[j].compareTo(list[i]) > 0) {
-                    for (int k = i; k > j; k--) {
-                        list[k] = list[k-1];
-                    }
-                    list[j] = value;
-                    break;
-                }
+            int j = i - 1;
+            while (j > 0 && list[j].compareTo(value) > 0) {
+                list[j + 1] = list[j];
+                j--;
             }
+            list[j] = value;
         }
     }
 

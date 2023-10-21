@@ -1,66 +1,64 @@
 package org.jeongmo.heap;
 
+import org.jeongmo.sorting.Sort;
+
+import java.lang.reflect.Array;
+
+
 public class Heap {
 
-    Integer[] data;
-    int count;
 
-    public Heap(int size) {
-        data = new Integer[size + 1];
-        data[0] = null;
-        count = 0;
-    }
-
-    private void bottomUp(int index) {
+    private <T extends Comparable<T>>void bottomUp(T[] list, int index) {
         if (index == 1) {
             return;
         }
 
-        if (data[index] > data[index / 2] ) {
-            UtilForSort.swap(data, index, index / 2);
-            bottomUp(index / 2);
+        if (list[index].compareTo(list[index / 2]) > 0) {
+            Sort.swap(list, index, index / 2);
+            bottomUp(list, index / 2);
         }
     }
 
-    private void topDown(int index) {
-        if (2 * index > count) {
-            return;
+    private <T extends Comparable<T>> void topDown(T[] list, int index) {
+        int leftChild = 2 * index;
+        int rightChild = 2 * index + 1;
+        int max = index;
+        if (leftChild <= list.length && list[max].compareTo(list[leftChild]) < 0) {
+            max = leftChild;
         }
-        else if (2 * index == count && data[index] < data[2 * index]) {
-            UtilForSort.swap(data, index, 2 * index);
-            return;
+        else if (rightChild <= list.length && list[max].compareTo(list[rightChild]) < 0) {
+            max =  rightChild;
         }
-
-        if (data[2 * index] > data[2 * index + 1] && data[2 * index] > data[index]) {
-            UtilForSort.swap(data, index, 2 * index);
-            topDown(2 * index);
-        }
-        else if (data[2 * index] < data[2 * index + 1] && data[2 * index + 1] > data[index]) {
-            UtilForSort.swap(data, index, 2 * index + 1);
-            topDown(2 * index + 1);
+        if (max != index) {
+            Sort.swap(list, index, max);
+            topDown(list, max);
         }
     }
 
-    public void addElement(Integer element) {
-        data[++count] = element;
-        bottomUp(count);
-    }
-
-    public Integer pop() {
-        Integer temp = data[1];
-        data[1] = data[count];
-        topDown(1);
-        return temp;
-    }
-
-    public void heapSort() {
-        Integer[] temp = new Integer[count + 1];
-        for (int i = 1; i < count + 1; i++) {
-            temp[i] = this.pop();
+    public <T extends Comparable<T>> T[] buildHeap(T[] list) {
+        T[] heap = (T[]) Array.newInstance(list.getClass().getComponentType(), list.length + 1);
+        int index = 1;
+        for (T element:list) {
+            heap[index++] = element;
         }
 
-        for (int i = 1; i < count + 1; i++) {
-            this.addElement(temp[i]);
+        int length = list.length;
+        for (int i = length / 2; i >= 1; i--) {
+            topDown(heap, i);
         }
+        return heap;
     }
+
+//    public void addElement(T[] list, T element) {
+//        data[++count] = element;
+//        bottomUp(count);
+//    }
+//
+//    public Integer pop() {
+//        Integer temp = data[1];
+//        data[1] = data[count];
+//        topDown(1);
+//        return temp;
+//    }
+
 }

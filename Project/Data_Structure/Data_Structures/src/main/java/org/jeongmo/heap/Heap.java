@@ -19,19 +19,19 @@ public class Heap {
         }
     }
 
-    private <T extends Comparable<T>> void topDown(T[] list, int index) {
+    public <T extends Comparable<T>> void topDown(T[] list, int index, int listSize) {
         int leftChild = 2 * index;
         int rightChild = 2 * index + 1;
         int max = index;
-        if (leftChild <= list.length && list[max].compareTo(list[leftChild]) < 0) {
+        if (leftChild <= listSize && list[max].compareTo(list[leftChild]) < 0) {
             max = leftChild;
         }
-        else if (rightChild <= list.length && list[max].compareTo(list[rightChild]) < 0) {
+        else if (rightChild <= listSize && list[max].compareTo(list[rightChild]) < 0) {
             max =  rightChild;
         }
         if (max != index) {
             Sort.swap(list, index, max);
-            topDown(list, max);
+            topDown(list, max, listSize);
         }
     }
 
@@ -42,9 +42,9 @@ public class Heap {
             heap[index++] = element;
         }
 
-        int length = list.length;
+        int length = list.length - 1;
         for (int i = length / 2; i >= 1; i--) {
-            topDown(heap, i);
+            topDown(heap, i, length);
         }
         return heap;
     }

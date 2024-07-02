@@ -1,5 +1,6 @@
 import java.util.*;
 
+// 정수형 배열 정렬하기
 public class Problem_1 {
 
     public static void main(String[] args) {
@@ -16,7 +17,7 @@ public class Problem_1 {
         start = System.currentTimeMillis();
         int[] solution = solution2(input);
         end = System.currentTimeMillis();
-        System.out.println((end - start) / 1000d + "초"); // O(nlong) 알고리즘은 대략 0.001초 (n:1,000,000 -> 89초)
+        System.out.println((end - start) / 1000d + "초"); // O(nlogn) 알고리즘은 대략 0.001초 (n:1,000,000 -> 89초)
 
     }
 

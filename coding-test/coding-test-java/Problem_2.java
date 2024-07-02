@@ -1,5 +1,7 @@
 import java.util.*;
 
+
+// 정수형 배열 내림차순으로 정렬하고 중복 제거하기
 public class Problem_2 {
     public static void main(String[] args) {
         int[] input1 = generateArrayWithDuplicates(100000);

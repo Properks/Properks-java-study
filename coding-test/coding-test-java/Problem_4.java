@@ -26,7 +26,7 @@ public class Problem_4 {
         int[] corrected = new int[3];
         for (int i = 0; i < answers.length; i++) {
             for (int j = 0; j < pattern.length; j++) {
-                if (pattern[j][i >= pattern[j].length ? i % pattern[j].length : i] == answers[i]) {
+                if (pattern[j][i % pattern[j].length] == answers[i]) {
                     corrected[j]++;
                 }
             }

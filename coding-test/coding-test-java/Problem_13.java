@@ -1,5 +1,6 @@
 import java.util.*;
 
+// 각 중에 인형들이 있고 이를 뽑아서 바구니에 넣을 때 연속으로 같은 인형이면 사라진다. 이후 사라진 인형의 개수
 public class Problem_13 {
     public static void main(String[] args) {
         int[][] input1 = {

@@ -11,9 +11,9 @@ public class Problem_19 {
         String[] completed3 = {"stanko", "ana", "mislav"};
 
 
-        String result1 = solution(input1, completed1);
-        String result2 = solution(input2, completed2);
-        String result3 = solution(input3, completed3);
+        String result1 = solution1(input1, completed1);
+        String result2 = solution1(input2, completed2);
+        String result3 = solution1(input3, completed3);
 
         System.out.println(result1);
         System.out.println(result2);
@@ -21,6 +21,7 @@ public class Problem_19 {
     }
 
     // completed를 이용한 hash를 하나 만들고 input 값들 중 hash에 없는 값을 찾기
+    // 이름이 같은 경우 Set에 안들어가기 때문에 예외 발생
     public static String solution(String[] input, String[] completed) {
         Set<String> hash = new HashSet<>();
 
@@ -34,6 +35,24 @@ public class Problem_19 {
             }
             // 중복값을 제거하는 방법
             hash.remove(value);
+        }
+        return null;
+    }
+
+    public static String solution1(String[] input, String[] completed) {
+        Map<String, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < completed.length; i++) {
+            map.put(completed[i], map.getOrDefault(completed[i], 0) + 1);
+            // map의 값들을 1로 설정하고 중복 이름에 대해서는 찾아서 1 더하기
+        }
+
+        int a= 0;
+        for (String value: input) {
+            if (map.getOrDefault(value, 0) == 0) {
+                return value;
+            }
+            map.put(value, map.get(value) - 1);
         }
         return null;
     }

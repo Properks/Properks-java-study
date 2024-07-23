@@ -1,7 +1,6 @@
 import util.PrintUtil;
 
 import java.util.*;
-import java.util.function.IntFunction;
 
 // 스테이지의 실패율을 계산하는 문제
 public class Problem_6 {
@@ -15,14 +14,14 @@ public class Problem_6 {
         int[] result1 = solution(n1, arr1);
         int[] result2 = solution(n2, arr2);
 
-        PrintUtil.printArray(result1);
-        PrintUtil.printArray(result2);
+        PrintUtil.printIntegerArray(result1);
+        PrintUtil.printIntegerArray(result2);
 
         int[] result3 = solution1(n1, arr1);
         int[] result4 = solution1(n2, arr2);
 
-        PrintUtil.printArray(result3);
-        PrintUtil.printArray(result4);
+        PrintUtil.printIntegerArray(result3);
+        PrintUtil.printIntegerArray(result4);
     }
 
     // 내 풀이

@@ -1,10 +1,8 @@
 package util;
 
-import java.lang.reflect.Type;
-
 public class PrintUtil {
 
-    public static void printArray(int[] array) {
+    public static void printIntegerArray(int[] array) {
         int length = array.length;
         StringBuilder builder = new StringBuilder();
         builder.append("{");
@@ -31,5 +29,16 @@ public class PrintUtil {
         builder.append("]");
 
         System.out.println(builder);
+    }
+
+    public static void printStringArray(String[] array) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        for (int i = 0; i < array.length; i++) {
+            sb.append(array[i] + (i == array.length - 1 ? "" : ", "));
+        }
+        sb.append("}");
+
+        System.out.println(sb);
     }
 }

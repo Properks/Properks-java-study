@@ -14,8 +14,8 @@ public class Problem_16 {
         int[] result1 = solution(input1, speed1);
         int[] result2 = solution(input2, speed2);
 
-        PrintUtil.printArray(result1);
-        PrintUtil.printArray(result2);
+        PrintUtil.printIntegerArray(result1);
+        PrintUtil.printIntegerArray(result2);
 
     }
 

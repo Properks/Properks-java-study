@@ -10,8 +10,8 @@ public class Problem_12 {
         int[] result1 = solution(input);
         int[] result2 = solution1(input);
 
-        PrintUtil.printArray(result1);
-        PrintUtil.printArray(result2);
+        PrintUtil.printIntegerArray(result1);
+        PrintUtil.printIntegerArray(result2);
     }
 
     // 내 풀이

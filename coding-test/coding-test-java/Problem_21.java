@@ -8,9 +8,11 @@ public class Problem_21 {
     public static void main(String[] args) {
         String[] input = {"Enter uid1234 Muzi", "Enter uid4567 Prodo", "Leave uid1234", "Enter uid1234 Prodo", "Change uid4567 Ryan"};
 
-        String[] result = solution(input);
+        String[] result1 = solution(input);
+        String[] result2 = solutionWithQueue(input);
 
-        PrintUtil.printStringArray(result);
+        PrintUtil.printStringArray(result1);
+        PrintUtil.printStringArray(result2);
     }
 
     // list 두번 사용

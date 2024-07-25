@@ -2,7 +2,8 @@ import util.PrintUtil;
 
 import java.util.*;
 
-// 두 행렬의 곱셈
+// 두 행렬의 곱셈 (제출 완료)
+// https://school.programmers.co.kr/learn/courses/30/lessons/12949
 public class Problem_5 {
     public static void main(String[] args) {
         int[][] arr1 = {

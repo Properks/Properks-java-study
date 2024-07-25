@@ -1,5 +1,7 @@
 import java.util.*;
 
+// 두 개 뽑아서 더하기 (제출 완료)
+// https://school.programmers.co.kr/learn/courses/30/lessons/68644
 // 배열에서 두 수를 뽑아 더해서 오름차순으로 정렬
 public class Problem_3 {
     public static void main(String[] args) {

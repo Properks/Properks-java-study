@@ -1,5 +1,7 @@
 import java.util.*;
 
+// 모의고사 (제출 완료)
+// https://school.programmers.co.kr/learn/courses/30/lessons/42840
 // 3명이 일정하게 답을 찍은 경우 가장 많이 맞은 사람을 배열로 반환
 public class Problem_4 {
 

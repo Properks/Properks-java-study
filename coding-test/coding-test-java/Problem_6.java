@@ -5,8 +5,11 @@ import java.util.*;
 // 스테이지의 실패율을 계산하는 문제
 public class Problem_6 {
     public static void main(String[] args) {
-        int n1 = 5;
-        int[] arr1 = {2, 1, 2, 6, 2, 4, 3, 3};
+//        int n1 = 5;
+//        int[] arr1 = {2, 1, 2, 6, 2, 4, 3, 3};
+
+        int n1 = 8;
+        int[] arr1 = {1,1,1,1,2,2,4,2};
 
         int n2 = 4;
         int[] arr2 = {4, 4, 4, 4, 4};
@@ -25,18 +28,20 @@ public class Problem_6 {
     }
 
     // 내 풀이
-    public static int[] solution(int count, int[] arr) {
+    // 오답 수정
+    public static int[] solution(int N, int[] stages) {
         List<Double> failure = new ArrayList<>();
-        int[] result = new int[count];
-        for (int i = 0; i < count; i++) {
+        int[] result = new int[N];
+        for (int i = 0; i < N; i++) {
             int target = i + 1;
-            long fail = Arrays.stream(arr).filter((value) -> value == target).count();
-            long total = Arrays.stream(arr).filter((value) -> value >= target).count();
-            failure.add((double) fail / (double) total);
+            long fail = Arrays.stream(stages).filter(value -> value == target).count();
+            long total = Arrays.stream(stages).filter(value -> value >= target).count();
+            // total이 0인 경우 오류가 생겨 오답이 된다.
+            failure.add(total != 0 ? (double) fail / (double) total : 0.0);
         }
 
-        for (int i = 0; i < count; i++) {
-            double max = failure.stream().mapToDouble(Double::doubleValue).max().getAsDouble();
+        for (int i = 0; i < N; i++) {
+            double max = failure.stream().max(Double::compareTo).get();
             int index = failure.indexOf(max);
             result[i] = index + 1;
             failure.set(index, -100.0);
@@ -46,16 +51,16 @@ public class Problem_6 {
     }
 
     // 책 풀이
-    public static int[] solution1(int count, int[] arr) {
-        int[] challenger = new int[count + 2];
-        for (int i = 0; i < arr.length; i++) {
-            challenger[arr[i]] += 1;
+    public static int[] solution1(int N, int[] stages) {
+        int[] challenger = new int[N + 2];
+        for (int i = 0; i < stages.length; i++) {
+            challenger[stages[i]] += 1;
         }
 
         Map<Integer, Double> fails = new HashMap<>();
-        double total = arr.length;
+        double total = stages.length;
 
-        for (int i = 1; i <= count; i++) {
+        for (int i = 1; i <= N; i++) {
             if (challenger[i] == 0) {
                 fails.put(i, 0.0);
             }

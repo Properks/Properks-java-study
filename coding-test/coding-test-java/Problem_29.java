@@ -8,9 +8,11 @@ public class Problem_29 {
     public static void main(String[] args) {
         int[][] nodeinfo = {{5,3}, {11,5}, {13,3}, {3,5}, {6,1}, {1,3}, {8,6}, {7,2}, {2,2}};
 
-        int[][] result = solution(nodeinfo);
+        int[][] result1 = solution(nodeinfo);
+        int[][] result2 = solution1(nodeinfo);
 
-        Arrays.stream(result).forEach(PrintUtil::printIntegerArray);
+        Arrays.stream(result1).forEach(PrintUtil::printIntegerArray);
+        Arrays.stream(result2).forEach(PrintUtil::printIntegerArray);
     }
 
     // 내 풀이
@@ -85,6 +87,94 @@ public class Problem_29 {
             postorder(result, tree, index * 2);
             postorder(result, tree, index * 2 + 1);
             result.add(tree[index]);
+        }
+    }
+
+    // 책 풀이
+    public static class Node {
+        int x;
+        int y;
+        int index;
+        Node left;
+        Node right;
+
+        public Node(int x, int y, int index) {
+            this.x = x;
+            this.y = y;
+            this.index = index;
+            this.left = null;
+            this.right = null;
+        }
+    }
+
+    public static int[][] solution1(int[][] nodeinfo) {
+        Node root = makeTree1(nodeinfo);
+
+        int[][] answer = new int[2][nodeinfo.length];
+
+        List<Integer> preorder = new ArrayList<>();
+        preorder1(preorder, root);
+        answer[0] = preorder.stream().mapToInt(Integer::intValue).toArray();
+
+        List<Integer> postorder = new ArrayList<>();
+        postorder1(postorder, root);
+        answer[1] = postorder.stream().mapToInt(Integer::intValue).toArray();
+
+        return answer;
+    }
+
+    public static Node makeTree1(int[][] nodeInfo) {
+        Node[] tree = new Node[nodeInfo.length];
+        for (int i = 0; i < nodeInfo.length; i++) {
+            tree[i] = new Node(nodeInfo[i][0], nodeInfo[i][1], i + 1);
+        }
+        Arrays.sort(tree, (node1, node2) -> {
+            if (node1.y == node2.y) {
+                return Integer.compare(node1.x, node2.x);
+            }
+            return Integer.compare(node2.y, node1.y);
+        });
+
+        for (int i = 1; i < tree.length; i++) {
+            Node parent = tree[0];
+            Node node = tree[i];
+            while (true) {
+                if (node.x < parent.x) {
+                    if (parent.left == null) {
+                        parent.left = node;
+                        break;
+                    }
+                    else {
+                        parent = parent.left;
+                    }
+                }
+                else {
+                    if (parent.right == null) {
+                        parent.right = node;
+                        break;
+                    }
+                    else {
+                        parent = parent.right;
+                    }
+                }
+            }
+        }
+        return tree[0];
+    }
+
+    public static void preorder1(List<Integer> result, Node node) {
+        if (node != null) {
+            result.add(node.index);
+            preorder1(result, node.left);
+            preorder1(result, node.right);
+        }
+    }
+
+    public static void postorder1(List<Integer> result, Node node) {
+        if (node != null) {
+            postorder1(result, node.left);
+            postorder1(result, node.right);
+            result.add(node.index);
         }
     }
 }

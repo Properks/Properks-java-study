@@ -2,6 +2,8 @@ import util.PrintUtil;
 
 import java.util.*;
 
+// 실패율 (제출 완료)
+// https://school.programmers.co.kr/learn/courses/30/lessons/42889
 // 스테이지의 실패율을 계산하는 문제
 public class Problem_6 {
     public static void main(String[] args) {

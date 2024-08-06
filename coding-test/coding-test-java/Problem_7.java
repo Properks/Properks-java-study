@@ -1,5 +1,7 @@
 import java.util.*;
 
+// 방문 길이 (제출 완료)
+// https://school.programmers.co.kr/learn/courses/30/lessons/49994
 // 좌표평면에서 사용자가 처음 걸은 거리
 public class Problem_7 {
     public static void main(String[] args) {
@@ -26,10 +28,10 @@ public class Problem_7 {
     }
 
     // 내 풀이
+    // 오답 방문 했던 길이 제외하지 않음
     public static int solution(String input) {
         int[] dx = {0, 1, 0, -1};
         int[] dy = {1, 0, -1, 0};
-        // 책에서 dx, dy를 정의하는 방식
 
         int[] xy = new int[2];
         Set<List<Integer>> set = new HashSet<>();

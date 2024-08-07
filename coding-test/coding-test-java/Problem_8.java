@@ -1,5 +1,7 @@
 import java.util.*;
 
+// 올바른 괄호
+// https://school.programmers.co.kr/learn/courses/30/lessons/12909
 // 괄호가 쌍이 맞는지 확인하는 문제
 public class Problem_8 {
 
@@ -32,16 +34,16 @@ public class Problem_8 {
     }
 
     // 내 풀이
-    public static boolean solution(String input) {
+    public static boolean solution(String s) {
         Stack<Character> stack = new Stack();
         int count = 0;
 
-        for (int i = 0; i < input.length(); i++) {
-            stack.push(input.charAt(i));
+        for (int i = 0; i < s.length(); i++) {
+            stack.push(s.charAt(i));
         }
 
         // stack.size()로 하면 로직 도중 pop하면서 크기가 변경되어 로직이 중간에 끊긴다.
-        for (int i = 0; i < input.length(); i++) {
+        for (int i = 0; i < s.length(); i++) {
             char bracket = stack.pop();
 
             if (bracket == '(') {
@@ -62,11 +64,11 @@ public class Problem_8 {
 
     // 책 풀이
     // 여는 괄호만 넣고 닿는 괄호는 stack에서 여는 괄호를 빼서 삭제한다.
-    public static boolean solution1(String input) {
+    public static boolean solution1(String s) {
         Stack<Character> stack = new Stack();
 
-        for (int i = 0; i < input.length(); i++) {
-            char bracket = input.charAt(i);
+        for (int i = 0; i < s.length(); i++) {
+            char bracket = s.charAt(i);
 
             if (bracket == '(') {
                 stack.push(bracket);

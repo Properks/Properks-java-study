@@ -1,5 +1,6 @@
 import java.util.*;
 
+// 저자 문제
 // 10진수를 2진수로 변형하는 과정
 public class Problem_9 {
 

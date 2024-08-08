@@ -1,5 +1,7 @@
 import java.util.*;
 
+// 괄호 회전하기 (제출 완료)
+// https://school.programmers.co.kr/learn/courses/30/lessons/76502
 // 첫 번째 괄호를 여러번 뒤로 옮겼을 때 올바른지 판단
 public class Problem_10 {
     public static void main(String[] args) {
@@ -21,17 +23,17 @@ public class Problem_10 {
 
     // 내 풀이
     // 짝지어 진 것들을 Map으로 푸는 것이 중요
-    public static int solution(String input) {
+    public static int solution(String s) {
         int count = 0;
-        for (int i = 0; i < input.length(); i++) {
-            char[] chars = new char[input.length()];
-            for (int j = 0; j < input.length(); j++) {
-                chars[j] = input.charAt((i + j) % input.length());
+        for (int i = 0; i < s.length(); i++) {
+            char[] chars = new char[s.length()];
+            for (int j = 0; j < s.length(); j++) {
+                chars[j] = s.charAt((i + j) % s.length());
             }
 
             Stack<Character> stacks = new Stack<>();
             boolean isSuccess = true;
-            for (int j = 0; j < input.length(); j++) {
+            for (int j = 0; j < s.length(); j++) {
                 isSuccess = true;
                 if (chars[j] == '(' || chars[j] == '{' || chars[j] == '[') {
                     stacks.push(chars[j]);
@@ -56,6 +58,33 @@ public class Problem_10 {
             }
         }
         return count;
+    }
+
+    // 프로그래머스에서의 풀이
+    class Solution {
+        public int solution(String s) {
+            int answer = 0;
+            Map<Character, Character> map = Map.of(')', '(', '}', '{', ']', '[');
+            for (int i = 0; i < s.length(); i++) {
+                Stack<Character> stack = new Stack<>();
+                for (int j = 0; j < s.length(); j++) {
+                    char ch = s.charAt((i + j) % s.length());
+                    if (stack.isEmpty()) {
+                        stack.push(ch);
+                    }
+                    else if (stack.peek().equals(map.get(ch))) {
+                        stack.pop();
+                    }
+                    else {
+                        stack.push(ch);
+                    }
+                }
+                if (stack.isEmpty()) {
+                    answer++;
+                }
+            }
+            return answer;
+        }
     }
 
     // 책 풀이

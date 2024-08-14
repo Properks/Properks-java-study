@@ -1,6 +1,7 @@
 import java.util.*;
 
-// 섬 연결하기
+// 섬 연결하기 (제출 완료)
+// https://school.programmers.co.kr/learn/courses/30/lessons/42861
 public class Problem_33 {
 
     public static void main(String[] args) {

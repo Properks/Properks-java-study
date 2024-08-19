@@ -1,6 +1,6 @@
 import java.util.*;
 
-// 짝지어 제거하기
+// 짝지어 제거하기 (제출 완료)
 // https://school.programmers.co.kr/learn/courses/30/lessons/12973
 // 연속 두번 입력된 문자를 계속 없애며 다 없어지는지
 public class Problem_11 {

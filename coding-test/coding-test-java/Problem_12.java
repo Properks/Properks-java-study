@@ -2,6 +2,9 @@ import util.PrintUtil;
 
 import java.util.*;
 
+// 주식 가격 (제출 완료)
+// https://school.programmers.co.kr/learn/courses/30/lessons/42584
+// stack.isEmpty() 잘 사용하기
 // 주식가격이 떨어지지 않은 시간 계산
 public class Problem_12 {
     public static void main(String[] args) {
@@ -51,6 +54,29 @@ public class Problem_12 {
             result[index] = input.length - index - 1;
         }
         return result;
+    }
+
+    // 복습 풀이
+    public int[] solution2(int[] prices) {
+        int length = prices.length;
+        int[] answer = new int[length];
+        Stack<Integer> stack = new Stack<>();
+
+        for (int i = 0; i < length; i++) {
+            if (!stack.isEmpty() && prices[i] < prices[stack.peek()]) {
+                while (prices[stack.peek()] > prices[i]) { // while 문에서 stack.peek()가 계속 작동하는데 stack.isEmpty()를 하지 않아 런타임 에러
+                    int index = stack.pop();
+                    answer[index] = i - index;
+                }
+            }
+            stack.push(i);
+        }
+
+        while (stack.isEmpty()) {
+            int index = stack.pop();
+            answer[index] = length - index - 1;
+        }
+        return answer;
     }
 
 }

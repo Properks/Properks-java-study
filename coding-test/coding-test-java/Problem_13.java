@@ -1,5 +1,7 @@
 import java.util.*;
 
+// 크레인 인형뽑기 게임
+// https://school.programmers.co.kr/learn/courses/30/lessons/64061
 // 각 중에 인형들이 있고 이를 뽑아서 바구니에 넣을 때 연속으로 같은 인형이면 사라진다. 이후 사라진 인형의 개수
 public class Problem_13 {
     public static void main(String[] args) {
@@ -50,6 +52,35 @@ public class Problem_13 {
             input[row][column] = 0;
         }
         return count;
+    }
+
+    // 제출한 풀이
+    class Solution {
+        public int solution(int[][] board, int[] moves) {
+            int answer = 0;
+            Stack<Integer> stack = new Stack<>();
+            A: for (int move : moves) {
+                int row = 0;
+                while (board[row][move - 1] == 0) {
+                    row++;
+                    if (row == board.length) {
+                        continue A;
+                    }
+                }
+
+                int doll = board[row][move - 1];
+                if (stack.isEmpty() || stack.peek() != doll) {
+                    stack.push(doll);
+
+                }
+                else {
+                    stack.pop();
+                    answer += 2;
+                }
+                board[row][move - 1] = 0;
+            }
+            return answer;
+        }
     }
 
     // 책 풀이

@@ -3,6 +3,7 @@ import util.PrintUtil;
 import java.util.*;
 
 // 저자 문제
+// 간단한 DFS 실행
 public class Problem_34 {
 
     public static void main(String[] args) {

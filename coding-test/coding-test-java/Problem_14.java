@@ -1,5 +1,6 @@
 import java.util.*;
 
+// 표 편집 (컴파일 에러)
 // 데이터 행을 이동 삭제 복구 작업
 public class Problem_14 {
 
@@ -53,24 +54,24 @@ public class Problem_14 {
     // 1. input을 보고 명령어 대로 clone 배열과 removed 스택에 처리하기
     // 1-1. 삭제, 되돌리기, 이동
     // 2. 원래 배열인 String[] 과 List<String>을 인덱스를 사용하여 비교
-    public static String solution(String[] board, int row, int index, String[] inputs) {
+    public static String solution(String[] board, int n, int k, String[] cmd) {
         List<String> clone = new ArrayList<>(Arrays.stream(board).toList());
         Stack<List<Object>> removed = new Stack<>();
-        for (String input: inputs) {
+        for (String input: cmd) {
             if (input.startsWith("D")) {
                 int value = Integer.parseInt(input.substring(2));
-                if (index + value < row - 1) {
-                    index += value;
+                if (k + value < n - 1) {
+                    k += value;
                 }
             }
             else if (input.startsWith("U")) {
                 int value = Integer.parseInt(input.substring(2));
-                if (index - value >= 0) {
-                    index -= value;
+                if (k - value >= 0) {
+                    k -= value;
                 }
             }
             else if (input.equals("C")) {
-                removed.push(List.of(index, clone.remove(index)));
+                removed.push(List.of(k, clone.remove(k)));
             }
             else if (input.equals("Z") && !removed.isEmpty()) {
                 List<Object> value = removed.pop();

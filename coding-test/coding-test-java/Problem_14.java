@@ -50,7 +50,7 @@ public class Problem_14 {
 
     }
 
-    // 구현 순서 분석
+    // 구현 순서 분석 (실패, 문제 이해를 잘못함)
     // 1. input을 보고 명령어 대로 clone 배열과 removed 스택에 처리하기
     // 1-1. 삭제, 되돌리기, 이동
     // 2. 원래 배열인 String[] 과 List<String>을 인덱스를 사용하여 비교
@@ -91,5 +91,71 @@ public class Problem_14 {
             }
         }
         return sb.toString();
+    }
+
+    // 제출해본 다른 풀이
+    // true, false로 놓고 비교하는 방식, while문으로 다음 커서를 찾을 때 한번 순회하는 부분에서 시간초과가 발생
+    public String solution1(int n, int k, String[] cmd) {
+        boolean[] isUnRemoved = new boolean[n];
+        Stack<Integer> removed = new Stack<>();
+
+        for (int i = 0; i < n; i++) {
+            isUnRemoved[i] = true;
+        }
+
+        for (String input : cmd) {
+            if (input.startsWith("D")) {
+                int value = Integer.parseInt(input.split(" ")[1]);
+
+                int index = k;
+                while (value > 0) {
+                    if (isUnRemoved[index + 1]) {
+                        value--;
+                    }
+                    index++;
+                }
+                k = index;
+            }
+            else if (input.startsWith("U")) {
+                int value = Integer.parseInt(input.split(" ")[1]);
+
+                int index = k;
+                while (value > 0) {
+                    if (isUnRemoved[index - 1]) {
+                        value--;
+                    }
+                    index--;
+                }
+                k = index;
+            }
+            else if (input.startsWith("C")) {
+                removed.push(k);
+                isUnRemoved[k] = false;
+                int prevK = k;
+                while ((k <= n - 1) && !isUnRemoved[k]) {
+                    k++;
+                }
+                if (k == n) {
+                    k = prevK - 1;
+                }
+            }
+            else if (input.startsWith("Z") && !removed.isEmpty()) {
+                isUnRemoved[removed.pop()] = true;
+            }
+        }
+
+        String answer = "";
+        StringBuilder sb = new StringBuilder();
+        for (boolean value : isUnRemoved) {
+            if (value) {
+                sb.append("O");
+            }
+            else {
+                sb.append("X");
+            }
+        }
+        answer = sb.toString();
+
+        return answer;
     }
 }

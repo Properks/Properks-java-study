@@ -158,4 +158,75 @@ public class Problem_14 {
 
         return answer;
     }
+
+    // up, down 집합 사용 풀이 (실패)
+    // if 문 때문인지 시간 복잡도에서 실패
+    public String solution2(int n, int k, String[] cmd) {
+        int[] up = new int[n];
+        int[] down = new int[n];
+        Stack<Integer> removed = new Stack<>();
+
+        for (int i = 0; i < n; i++) {
+            up[i] = i - 1;
+            down[i] = i + 1;
+        }
+
+        for (String input : cmd) {
+            if (input.startsWith("D")) {
+                int value = Integer.parseInt(input.split(" ")[1]);
+                for (int i = 0; i < value; i++) {
+                    k = down[k];
+                }
+            }
+            else if (input.startsWith("U")) {
+                int value = Integer.parseInt(input.split(" ")[1]);
+                for (int i = 0; i < value; i++) {
+                    k = up[k];
+                }
+            }
+            else if (input.startsWith("C")) {
+                removed.push(k);
+                if (up[k] == -1) {
+                    up[down[k]] = up[k];
+                    k = down[k];
+                }
+                else if (down[k] == n) {
+                    down[up[k]] = down[k];
+                    k = up[k];
+                }
+                else {
+                    up[down[k]] = up[k];
+                    down[up[k]] = down[k];
+                    k = down[k];
+                }
+            }
+            else if (input.startsWith("Z") && !removed.isEmpty()) {
+                int value = removed.pop();
+                if (up[value] == -1) {
+                    up[down[value]] = value;
+                }
+                else if (down[value] == n) {
+                    down[up[value]] = value;
+                }
+                else {
+                    down[up[value]] = value;
+                    up[down[value]] = value;
+                }
+            }
+        }
+
+        String answer = "";
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            if (removed.contains(i)) {
+                sb.append("X");
+            }
+            else {
+                sb.append("O");
+            }
+        }
+        answer = sb.toString();
+
+        return answer;
+    }
 }

@@ -1,6 +1,6 @@
 import java.util.*;
 
-// 표 편집 (컴파일 에러)
+// 표 편집 (시간초과)
 // 데이터 행을 이동 삭제 복구 작업
 public class Problem_14 {
 

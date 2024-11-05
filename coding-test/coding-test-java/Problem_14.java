@@ -229,4 +229,57 @@ public class Problem_14 {
 
         return answer;
     }
+
+    // 실패
+    // 효율성 테스트에서 시같초과
+    public String solution3(int n, int k, String[] cmd) {
+        int[] up = new int[n + 2];
+        int[] down = new int[n + 2];
+        Stack<Integer> removed = new Stack<>();
+
+        for (int i = 0; i < n + 2; i++) {
+            up[i] = i - 1;
+            down[i] = i + 1;
+        }
+        k++;
+        for (String input : cmd) {
+            if (input.startsWith("D")) {
+                int value = Integer.parseInt(input.split(" ")[1]);
+                for (int i = 0; i < value; i++) {
+                    k = down[k];
+                }
+            }
+            else if (input.startsWith("U")) {
+                int value = Integer.parseInt(input.split(" ")[1]);
+                for (int i = 0; i < value; i++) {
+                    k = up[k];
+                }
+            }
+            else if (input.startsWith("C")) {
+                removed.push(k);
+                up[down[k]] = up[k];
+                down[up[k]] = down[k];
+                k = (n < down[k]) ? up[k] : down[k];
+            }
+            else if (input.startsWith("Z") && !removed.isEmpty()) {
+                int value = removed.pop();
+                down[up[value]] = value;
+                up[down[value]] = value;
+            }
+        }
+
+        String answer = "";
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            if (removed.contains(i + 1)) {
+                sb.append("X");
+            }
+            else {
+                sb.append("O");
+            }
+        }
+        answer = sb.toString();
+
+        return answer;
+    }
 }

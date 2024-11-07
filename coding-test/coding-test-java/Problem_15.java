@@ -1,5 +1,6 @@
 import java.util.*;
 
+// 저자 문제
 // 반복적으로 k번째의 사람을 제외하면서 마지막에 남는 사람의 번호를 출력하는 문제
 public class Problem_15 {
     public static void main(String[] args) {
@@ -29,7 +30,7 @@ public class Problem_15 {
                  index = 0;
             }
         }
-        return list.getFirst();
+        return list.get(0);
     }
 
     // 책 풀이

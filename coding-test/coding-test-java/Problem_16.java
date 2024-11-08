@@ -50,4 +50,32 @@ public class Problem_16 {
         result.add(count);
         return result.stream().mapToInt(Integer::intValue).toArray();
     }
+
+    // 다시 푼 내 풀이
+    // 큐에서 100 넘은 것을 보면 100 넘는 것들만 다 없애고 다시 speed만큼 추가해서 놓기
+    public int[] solution1(int[] progresses, int[] speeds) {
+        List<Integer> answer = new ArrayList<>();
+        ArrayDeque<Integer> queue = new ArrayDeque<>();
+        for (int i = 0; i < progresses.length; i++) {
+            queue.addLast(i);
+        }
+
+        while(!queue.isEmpty()) {
+            int count = 0;
+            while (!queue.isEmpty() && progresses[queue.peek()] >= 100) {
+                queue.pollFirst();
+                count++;
+            }
+            if (count > 0) {
+                answer.add(count);
+            }
+            for (int i = 0; i < queue.size(); i++) {
+                int index = queue.pollFirst();
+                progresses[index] += speeds[index];
+                queue.addLast(index);
+            }
+        }
+
+        return answer.stream().mapToInt(Integer::intValue).toArray();
+    }
 }

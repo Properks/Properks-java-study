@@ -1,5 +1,6 @@
 import java.util.*;
 
+// 카드 뭉치 (제출 완료)
 // 목표 문장으로 단어 배열하기
 public class Problem_17 {
     public static void main(String[] args) {
@@ -19,11 +20,12 @@ public class Problem_17 {
     public static String solution(String[] card1, String[] card2, String[] goals) {
 //        ArrayDeque<String> queue1 = new ArrayDeque<>();
 //        ArrayDeque<String> queue2 = new ArrayDeque<>();
-//        for (int i = 0; i < card1.length; i++){
-//            queue1.addLast(card1[i]);
+//
+//        for (String card1 : cards1) {
+//            queue1.addLast(card1);
 //        }
-//        for (int i = 0; i < card2.length; i++ ) {
-//            queue2.addLast(card2[i]);
+//        for (String card2 : cards2) {
+//            queue2.addLast(card2);
 //        }
         //책 풀이
         // List로 만들어서 생성
@@ -58,6 +60,7 @@ public class Problem_17 {
         return "Yes";
     }
 
+    // 아래의 코드와 동일하게 재풀이
     public static String solutionWithoutComment(String[] card1, String[] card2, String[] goals) {
         ArrayDeque<String> queue1 = new ArrayDeque<>(Arrays.asList(card1));
         ArrayDeque<String> queue2 = new ArrayDeque<>(Arrays.asList(card2));

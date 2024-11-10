@@ -2,6 +2,8 @@ import util.PrintUtil;
 
 import java.util.*;
 
+// 기능 개발 (제출 완료)
+// https://school.programmers.co.kr/learn/courses/30/lessons/42586
 // 기능 개발 순서에 맞게 배포하기
 public class Problem_16 {
     public static void main(String[] args) {

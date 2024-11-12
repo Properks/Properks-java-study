@@ -1,5 +1,6 @@
 import java.util.*;
 
+// 저자 문제
 // 배열 내의 두 수를 더한 값이 target이 되는지 확인하기
 public class Problem_18 {
 

@@ -1,5 +1,7 @@
 import java.util.*;
 
+// 완주하지 못한 선 (제출 완료)
+// https://school.programmers.co.kr/learn/courses/30/lessons/42576
 // 마라톤 완주 못한 사람 찾기
 public class Problem_19 {
     public static void main(String[] args) {

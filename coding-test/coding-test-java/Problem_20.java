@@ -44,4 +44,36 @@ public class Problem_20 {
         }
         return answer;
     }
+
+    // 재풀이
+    public int solution1(String[] want, int[] number, String[] discount) {
+        Map<String, Integer> map = new HashMap<>();
+        for (int i = 0; i < want.length; i++) {
+            map.put(want[i], number[i]);
+        }
+
+        int answer = 0;
+
+        for (int i = 0; i < discount.length; i++) {
+            if (map.getOrDefault(discount[i], 0) > 0) {
+                int day = 0;
+                Map<String, Integer> hash = new HashMap<>(map);
+                for (int j = i; j < discount.length; j++) {
+                    if (hash.getOrDefault(discount[j], 0) > 0) {
+                        hash.put(discount[j], hash.get(discount[j]) - 1);
+                        day++;
+                    }
+                    else {
+                        break;
+                    }
+                    if (day == 10){
+                        answer++;
+                        break;
+                    }
+                }
+            }
+        }
+
+        return answer;
+    }
 }

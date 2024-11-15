@@ -1,5 +1,7 @@
 import java.util.*;
 
+// 할인 행사 (제출 완료)
+// https://school.programmers.co.kr/learn/courses/30/lessons/131127
 // 10일 연속으로 할인하는 날짜 찾기
 public class Problem_20 {
 
@@ -46,6 +48,7 @@ public class Problem_20 {
     }
 
     // 재풀이
+    // label을 사용하지 않도록 재구성
     public int solution1(String[] want, int[] number, String[] discount) {
         Map<String, Integer> map = new HashMap<>();
         for (int i = 0; i < want.length; i++) {

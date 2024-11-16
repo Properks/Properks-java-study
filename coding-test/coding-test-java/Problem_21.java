@@ -76,4 +76,41 @@ public class Problem_21 {
         }
         return queue.toArray(String[]::new);
     }
+
+    // 재풀이
+    public String[] solution1(String[] record) {
+        Map<String, String> name = new HashMap<>();
+        List<String> orders = new ArrayList<>();
+        for (String oper : record) {
+            String[] operation = oper.split(" ");
+            if (operation[0].equals("Enter")) {
+                name.put(operation[1], operation[2]);
+                orders.add(operation[0] + " " + operation[1]);
+            }
+            else if (operation[0].equals("Leave")) {
+                orders.add(operation[0] + " " + operation[1]);
+            }
+            else if (operation[0].equals("Change")) {
+                name.put(operation[1], operation[2]);
+            }
+            else {
+
+            }
+        }
+
+        List<String> answer = new ArrayList<>();
+        for (String order : orders) {
+            String[] operation = order.split(" ");
+            StringBuilder sb = new StringBuilder();
+            sb.append(name.get(operation[1]));
+            if (operation[0].equals("Enter")) {
+                sb.append("님이 들어왔습니다.");
+            }
+            else if (operation[0].equals("Leave")) {
+                sb.append("님이 나갔습니다.");
+            }
+            answer.add(sb.toString());
+        }
+        return answer.stream().toArray(String[]::new);
+    }
 }

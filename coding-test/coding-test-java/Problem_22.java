@@ -1,6 +1,7 @@
 import util.PrintUtil;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 // 베스트 앨범
 // 가장 많이 실행한 곡을 장르별로 2개씩 뽑는 문제 풀이
@@ -38,5 +39,29 @@ public class Problem_22 {
             }
         }
         return answers.stream().mapToInt(Integer::intValue).toArray();
+    }
+
+    // 재풀이
+    public int[] solution1(String[] genres, int[] plays) {
+        Map<String, Integer> count = new HashMap<>();
+        Map<String, Integer> twice = new HashMap<>();
+        List<Integer> sort = new ArrayList<>();
+        for (int i = 0; i < genres.length; i++) {
+            count.put(genres[i], count.getOrDefault(genres[i], 0) + plays[i]);
+            sort.add(i);
+        }
+        sort = sort.stream().sorted((o1, o2) -> genres[o1].equals(genres[o2]) ? plays[o2] - plays[o1] : count.get(genres[o2]).compareTo(count.get(genres[o1]))).collect(Collectors.toList());
+
+        List<Integer> answer = new ArrayList<>();
+
+        for (Integer index : sort) {
+            if (twice.getOrDefault(genres[index], 0) < 2) {
+                answer.add(index);
+                twice.put(genres[index], twice.getOrDefault(genres[index], 0) + 1);
+            }
+        }
+
+
+        return answer.stream().mapToInt(Integer::intValue).toArray();
     }
 }

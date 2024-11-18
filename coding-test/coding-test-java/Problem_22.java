@@ -3,7 +3,8 @@ import util.PrintUtil;
 import java.util.*;
 import java.util.stream.Collectors;
 
-// 베스트 앨범
+// 베스트 앨범 (제출 완료)
+// https://school.programmers.co.kr/learn/courses/30/lessons/42579
 // 가장 많이 실행한 곡을 장르별로 2개씩 뽑는 문제 풀이
 public class Problem_22 {
 

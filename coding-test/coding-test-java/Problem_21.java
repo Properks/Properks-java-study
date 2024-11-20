@@ -2,7 +2,8 @@ import util.PrintUtil;
 
 import java.util.*;
 
-// 오픈 채팅방
+// 오픈 채팅방 (제출 완료)
+// https://school.programmers.co.kr/learn/courses/30/lessons/42888
 // 채팅방 들어오는 것 기록하기
 public class Problem_21 {
     public static void main(String[] args) {

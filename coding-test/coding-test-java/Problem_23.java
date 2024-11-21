@@ -50,4 +50,37 @@ public class Problem_23 {
 
         return answer;
     }
+
+    // 재풀이
+    public int[] solution1(String[] id_list, String[] report, int k) {
+        int[] answer = new int[id_list.length];
+        Map<String, Integer> reportCount = new HashMap<>();
+        Map<String, List<String>> history = new HashMap<>();
+
+        for (String id : id_list) {
+            reportCount.put(id, 0);
+            history.put(id, new ArrayList<>());
+        }
+
+        for (String rep : report) {
+            String[] reported = rep.split(" ");
+            if (history.get(reported[0]).contains(reported[1])) {
+                continue;
+            }
+            reportCount.put(reported[1], reportCount.get(reported[1]) + 1);
+            history.get(reported[0]).add(reported[1]);
+        }
+
+        for (int i = 0; i < answer.length; i++) {
+            int count = 0;
+            for (String name : history.get(id_list[i])) {
+                if (reportCount.get(name) >= k) {
+                    count++;
+                }
+            }
+            answer[i] = count;
+        }
+
+        return answer;
+    }
 }

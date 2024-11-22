@@ -2,7 +2,8 @@ import util.PrintUtil;
 
 import java.util.*;
 
-// 신고 결과 받기
+// 신고 결과 받기 (제출 완료)
+// https://school.programmers.co.kr/learn/courses/30/lessons/92334
 public class Problem_23 {
 
     public static void main(String[] args) {
@@ -52,6 +53,7 @@ public class Problem_23 {
     }
 
     // 재풀이
+    // 리스트로 풀이
     public int[] solution1(String[] id_list, String[] report, int k) {
         int[] answer = new int[id_list.length];
         Map<String, Integer> reportCount = new HashMap<>();

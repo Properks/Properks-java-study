@@ -2,7 +2,8 @@ import util.PrintUtil;
 
 import java.util.*;
 
-// 메뉴 리뉴얼
+// 메뉴 리뉴얼 (제출 완료)
+// https://school.programmers.co.kr/learn/courses/30/lessons/72411
 public class Problem_24 {
     public static void main(String[] args) {
         String[] orders1 = {"ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"};
@@ -79,8 +80,8 @@ public class Problem_24 {
         }
     }
 
-    // 재풀이 (실패)
-    // 정답을 추출하는 부분의 Stream 다시 한번 생각해보기
+    // 재풀이
+    // 정답을 추출하는 부분의 Stream 다시 한번 생각해보기 (실패)
     // 정렬 추가 및 stream 수정으로 성공
     public String[] solution1(String[] orders, int[] course) {
         Map<String, Integer> count = new HashMap<>();

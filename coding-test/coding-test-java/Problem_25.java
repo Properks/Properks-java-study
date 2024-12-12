@@ -37,6 +37,28 @@ public class Problem_25 {
         return answer;
     }
 
+    // StackOverflow 발생
+    public static String[] solution1(int[] nodes) {
+        int[] clone = new int[nodes.length];
+        for (int i = 0; i < clone.length; i++) {
+            clone[i] = nodes[i];
+        }
+        String[] answer = new String[3];
+        List<Integer> result = new ArrayList<>();
+        preorder(result, clone, 0);
+        answer[0] = result.toString();
+
+        result = new ArrayList<>();
+        inorder(result, clone, 0);
+        answer[1] = result.toString();
+
+        result = new ArrayList<>();
+        postorder(result, clone, 0);
+        answer[2] = result.toString();
+
+        return answer;
+    }
+
     public static void preorder(List<Integer> result, int[] nodes, int index) {
         if (index < nodes.length) {
             result.add(nodes[index]);

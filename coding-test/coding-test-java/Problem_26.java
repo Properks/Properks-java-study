@@ -1,5 +1,6 @@
 import java.util.*;
 
+// 예상 토너먼트
 // 토너먼트에서 a번 참가자 A와 b번 참가자 B가 만날 라운드 구하기
 public class Problem_26 {
     public static void main(String[] args) {
@@ -42,6 +43,34 @@ public class Problem_26 {
             a = (a + 1) / 2;
             b = (b + 1) / 2;
         }
+        return answer;
+    }
+
+    // 재풀이
+    // b보다 a가 큰 경우를 방지하고 tree 의 height으로만 계산
+    public int solution2(int n, int a, int b) {
+        int low; // b보다 a가 큰 경우 제외
+        int high;
+        int answer = 1;
+        if (a <= b) {
+            low = a;
+            high = b;
+        }
+        else {
+            low = b;
+            high = a;
+        }
+
+        while (n / 2 != 0) {
+            if ((low + 1 == high) && (high % 2 == 0)) {
+                break;
+            }
+            low = (low + 1) / 2;
+            high = (high + 1) / 2;
+            answer++;
+            n /= 2;
+        }
+
         return answer;
     }
 }

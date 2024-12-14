@@ -37,7 +37,8 @@ public class Problem_25 {
         return answer;
     }
 
-    // StackOverflow 발생
+    // index 0부터로 풀이한 결과
+    // 첫 번째 노드가 0이라서 2*index가 계속 동일한 곳으로 접근 -> 결국 StackOverflow 발생
     public static String[] solution1(int[] nodes) {
         int[] clone = new int[nodes.length];
         for (int i = 0; i < clone.length; i++) {

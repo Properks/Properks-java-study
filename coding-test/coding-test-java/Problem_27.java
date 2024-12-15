@@ -51,4 +51,32 @@ public class Problem_27 {
 
         return Arrays.stream(enroll).mapToInt(answer::get).toArray();
     }
+
+    // 재풀이
+    // Map 대신 index 저장 후 배열 사용, map 사용시 순서가 뒤섞이는 현상 발생
+    // 중요!!~~ : upperPrice - upperPrice / 10 -> upperPrice / 90 으로 변경할 경우 값이 12이면 두 값이 달라진다. 11 -> 10
+    public int[] solution1(String[] enroll, String[] referral, String[] seller, int[] amount) {
+        int[] answer = new int[enroll.length];
+        Map<String, String> tree = new HashMap<>();
+        Map<String, Integer> index = new HashMap<>();
+        for (int i = 0; i < enroll.length; i++) {
+            tree.put(enroll[i], referral[i]);
+            index.put(enroll[i], i);
+        }
+        for (int i = 0; i < seller.length; i++) {
+            String name = seller[i];
+            int mon = amount[i] * 100;
+            while (!name.equals("-") && mon > 0) {
+                if (mon / 10 < 1) {
+                    answer[index.get(name)] += mon;
+                }
+                else {
+                    answer[index.get(name)] += mon - mon / 10;
+                }
+                mon /= 10;
+                name = tree.get(name);
+            }
+        }
+        return answer;
+    }
 }

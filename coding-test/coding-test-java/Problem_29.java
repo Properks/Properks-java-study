@@ -19,7 +19,7 @@ public class Problem_29 {
     public static int[][] solution(int[][] nodeinfo) {
         List<List<Integer>> sortedInfo = Arrays.stream(nodeinfo)
                 .map(node -> Arrays.stream(node).boxed().toList())
-                .sorted((v1, v2) -> v2.get(1).compareTo(v1.get(1)) == 0 ? v1.getFirst().compareTo(v2.getFirst()) : v2.get(1).compareTo(v1.get(1)))
+                .sorted((v1, v2) -> v2.get(1).compareTo(v1.get(1)) == 0 ? v1.get(0).compareTo(v2.get(0)) : v2.get(1).compareTo(v1.get(1)))
                 .toList();
 
         List<Integer> valueList = Arrays.stream(nodeinfo)
@@ -48,7 +48,7 @@ public class Problem_29 {
         int[] tree = new int[(int) Math.pow(2, heightList.size() + 1)];
         Arrays.fill(tree, -1);
         for (List<Integer> node : sortedInfo) {
-            int value = node.getFirst();
+            int value = node.get(0);
             int height = heightList.indexOf(node.get(1)) + 1;
             int index = (int)Math.pow(2, height - 1);
             if (index == 1) {
@@ -175,6 +175,81 @@ public class Problem_29 {
             postorder1(result, node.left);
             postorder1(result, node.right);
             result.add(node.index);
+        }
+    }
+
+    // 재풀이 (실패, 문제 이해 부족)
+    // int[][] 를 index로 채워야하는데 해당 부분 오류
+    public static class Solution {
+        public int[][] solution(int[][] nodeinfo) {
+            int[][] sorted = Arrays.stream(nodeinfo).sorted((array1, array2) -> Integer.compare(array1[0], array2[0])).sorted((array1, array2) -> Integer.compare(array2[1], array1[1])).toArray(int[][]::new);
+
+            Node root = makeNode(sorted);
+            List<Integer> preorder = new ArrayList<>();
+            List<Integer> postorder = new ArrayList<>();
+
+            preorder(preorder, root);
+            postorder(postorder, root);
+
+            int[][] answer = {preorder.stream().mapToInt(Integer::intValue).toArray(),
+                    postorder.stream().mapToInt(Integer::intValue).toArray()};
+            return sorted;
+        }
+
+        public Node makeNode(int[][] sorted) {
+            Node root = new Node(sorted[0][0]);
+            for (int i = 1; i < sorted.length; i++) {
+                Node parent = root;
+                Node node = new Node(sorted[i][0]);
+                while (true) {
+                    if (parent.value > node.value) {
+                        if (parent.left == null) {
+                            parent.left = node;
+                            break;
+                        }
+                        else {
+                            parent = parent.left;
+                        }
+                    }
+                    else {
+                        if (parent.right == null) {
+                            parent.right = node;
+                            break;
+                        }
+                        else {
+                            parent = parent.right;
+                        }
+                    }
+                }
+            }
+            return root;
+        }
+
+        public void preorder(List<Integer> result, Node root) {
+            if (root != null) {
+                result.add(root.value);
+                preorder(result, root.left);
+                preorder(result, root.right);
+            }
+        }
+
+        public void postorder(List<Integer> result, Node root) {
+            if (root != null) {
+                preorder(result, root.left);
+                preorder(result, root.right);
+                result.add(root.value);
+            }
+        }
+
+        class Node {
+            Node left;
+            Node right;
+            int value;
+            int index;
+
+            public Node(int value) {
+                this.value = value;
+            }
         }
     }
 }

@@ -178,11 +178,18 @@ public class Problem_29 {
         }
     }
 
-    // 재풀이 (실패, 문제 이해 부족)
+    // 재풀이 (재풀이 성공)
     // int[][] 를 index로 채워야하는데 해당 부분 오류
-    public static class Solution {
+    // node 변경 및 로직 변경
+    class Solution {
         public int[][] solution(int[][] nodeinfo) {
-            int[][] sorted = Arrays.stream(nodeinfo).sorted((array1, array2) -> Integer.compare(array1[0], array2[0])).sorted((array1, array2) -> Integer.compare(array2[1], array1[1])).toArray(int[][]::new);
+
+            Node[] nodes = new Node[nodeinfo.length];
+            for (int i = 0; i < nodeinfo.length; i++) {
+                nodes[i] = new Node(nodeinfo[i][0], nodeinfo[i][1], i+1);
+            }
+
+            Node[] sorted = Arrays.stream(nodes).sorted((n1, n2) -> Integer.compare(n1.x, n2.x)).sorted((n1, n2) -> Integer.compare(n2.y, n1.y)).toArray(Node[]::new);
 
             Node root = makeNode(sorted);
             List<Integer> preorder = new ArrayList<>();
@@ -193,16 +200,16 @@ public class Problem_29 {
 
             int[][] answer = {preorder.stream().mapToInt(Integer::intValue).toArray(),
                     postorder.stream().mapToInt(Integer::intValue).toArray()};
-            return sorted;
+            return answer;
         }
 
-        public Node makeNode(int[][] sorted) {
-            Node root = new Node(sorted[0][0]);
+        public Node makeNode(Node[] sorted) {
+            Node root = sorted[0];
             for (int i = 1; i < sorted.length; i++) {
                 Node parent = root;
-                Node node = new Node(sorted[i][0]);
+                Node node = sorted[i];
                 while (true) {
-                    if (parent.value > node.value) {
+                    if (parent.x > node.x) {
                         if (parent.left == null) {
                             parent.left = node;
                             break;
@@ -227,7 +234,7 @@ public class Problem_29 {
 
         public void preorder(List<Integer> result, Node root) {
             if (root != null) {
-                result.add(root.value);
+                result.add(root.index);
                 preorder(result, root.left);
                 preorder(result, root.right);
             }
@@ -235,20 +242,23 @@ public class Problem_29 {
 
         public void postorder(List<Integer> result, Node root) {
             if (root != null) {
-                preorder(result, root.left);
-                preorder(result, root.right);
-                result.add(root.value);
+                postorder(result, root.left);
+                postorder(result, root.right);
+                result.add(root.index);
             }
         }
 
         class Node {
             Node left;
             Node right;
-            int value;
+            int x;
+            int y;
             int index;
 
-            public Node(int value) {
-                this.value = value;
+            public Node(int x, int y, int index) {
+                this.x = x;
+                this.y = y;
+                this.index = index;
             }
         }
     }

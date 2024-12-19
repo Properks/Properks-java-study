@@ -1,6 +1,7 @@
 import java.util.*;
 
-// 예상 토너먼트
+// 예상 토너먼트 (제출 완료)
+// https://school.programmers.co.kr/learn/courses/30/lessons/12985
 // 토너먼트에서 a번 참가자 A와 b번 참가자 B가 만날 라운드 구하기
 public class Problem_26 {
     public static void main(String[] args) {

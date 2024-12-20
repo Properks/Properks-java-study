@@ -12,9 +12,8 @@ public class Problem_30 {
         Boolean[] result1 =  solution(k1, operations1);
         Boolean[] result2 =  solution(k2, operations2);
 
-        Arrays.stream(result1).forEach(System.out::print);
-        System.out.println();
-        Arrays.stream(result2).forEach(System.out::print);
+        System.out.println(Arrays.toString(result1));
+        System.out.println(Arrays.toString(result2));
     }
 
     public static Boolean[] solution(int k, int[][] operations) {
@@ -38,8 +37,8 @@ public class Problem_30 {
     }
 
     public static void union(int[] parent, int node1, int node2) {
-        int node1Parent = find(parent, node1);
-        int node2Parent = find(parent, node2);
+        int node1Parent = find1(parent, node1);
+        int node2Parent = find1(parent, node2);
         parent[node2] = node1;
     }
 
@@ -51,8 +50,17 @@ public class Problem_30 {
         return parentNode;
     }
 
+    public static int find1(int[] parent, int node) {
+        int parentNode = node;
+        while (parentNode != parent[parentNode]) {
+            parentNode = parent[parentNode];
+        }
+        parent[node] = parentNode;
+        return parentNode;
+    }
+
     public static boolean isSameParent(int[] parent, int node1, int node2) {
-        return find(parent, node1) == find(parent, node2);
+        return find1(parent, node1) == find1(parent, node2);
     }
 
 }

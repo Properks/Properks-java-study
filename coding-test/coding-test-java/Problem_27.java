@@ -2,7 +2,8 @@ import util.PrintUtil;
 
 import java.util.*;
 
-// 다단계 칫솔 판매
+// 다단계 칫솔 판매 (제출 완료)
+// https://school.programmers.co.kr/learn/courses/30/lessons/77486
 // 다단계 회사 수익 분배 문제 풀이
 public class Problem_27 {
 
@@ -53,7 +54,7 @@ public class Problem_27 {
     }
 
     // 재풀이
-    // Map 대신 index 저장 후 배열 사용, map 사용시 순서가 뒤섞이는 현상 발생
+    // Map 대신 index 저장 후 배열 사용, Map 사용시 각 원소의 순서가 뒤섞이는 현상 발생
     // 중요!!~~ : upperPrice - upperPrice / 10 -> upperPrice / 90 으로 변경할 경우 값이 12이면 두 값이 달라진다. 11 -> 10
     public int[] solution1(String[] enroll, String[] referral, String[] seller, int[] amount) {
         int[] answer = new int[enroll.length];

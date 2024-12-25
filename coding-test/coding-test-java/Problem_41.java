@@ -5,12 +5,18 @@ public class Problem_41 {
     public static void main(String[] args) {
         int[][] input1 = {{0,0,0}, {0,0,0}, {0,0,0}};
         int[][] input2 = {{0,0,0,0,0,0,0,1}, {0,0,0,0,0,0,0,0}, {0,0,0,0,0,1,0,0}, {0,0,0,0,1,0,0,0}, {0,0,0,1,0,0,0,1}, {0,0,1,0,0,0,1,0}, {0,1,0,0,0,1,0,0}, {1,0,0,0,0,0,0,0}};
+        int[][] input3 = {{0,0,1,0}, {0,0,0,0}, {0,1,0,1}, {1,0,0,0}};
+        int[][] input4 = {{0,0,0,0,0,0}, {0,1,1,1,1,0}, {0,0,1,0,0,0}, {1,0,0,1,0,1}, {0,1,0,0,0,1}, {0,0,0,0,0,0}};
 
         int result1 = solution(input1);
         int result2 = solution(input2);
+        int result3 = solution(input3);
+        int result4 = solution(input4);
 
         System.out.println(result1);
         System.out.println(result2);
+        System.out.println(result3);
+        System.out.println(result4);
     }
 
     public static class Location {

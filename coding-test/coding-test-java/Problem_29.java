@@ -2,7 +2,8 @@ import util.PrintUtil;
 
 import java.util.*;
 
-// 길 찾기 게임
+// 길 찾기 게임 (제출 완료)
+// https://school.programmers.co.kr/learn/courses/30/lessons/42892
 public class Problem_29 {
 
     public static void main(String[] args) {

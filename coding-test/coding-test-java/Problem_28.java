@@ -1,6 +1,6 @@
 import java.util.*;
 
-// 양과 늑대
+// 양과 늑대 (미제출)
 // 양의 최대 개수를 찾는 고난이도 문제 (Tree 형태의 BFS 문제, BFS를 한 번 실행하는 것이 아닌 여러번 하여 최적의 해를 찾는 문제)
 public class Problem_28 {
     public static void main(String[] args) {

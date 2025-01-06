@@ -52,4 +52,25 @@ public class Problem_32 {
         }
         return answer;
     }
+
+    // 재풀이
+    // break문 넣지 않아서 한 번 실패, 반복문에서 break, continue 생각하기
+    public int[] solution1(int n, String[] words) {
+        int[] answer = {0, 0};
+
+        Set<String> used = new HashSet<>();
+        char lastLetter = words[0].charAt(0);
+        for (int i = 0; i < words.length; i++) {
+            String word = words[i];
+            if (word.charAt(0) != lastLetter || used.contains(word)) {
+                answer[0] = i % n + 1;
+                answer[1] = i / n + 1;
+                break;
+            }
+            used.add(word);
+            lastLetter = word.charAt(word.length() - 1);
+        }
+
+        return answer;
+    }
 }

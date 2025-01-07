@@ -2,7 +2,8 @@ import util.PrintUtil;
 
 import java.util.*;
 
-// 영어 끝말잇기
+// 영어 끝말잇기 (제출 완료)
+// https://school.programmers.co.kr/learn/courses/30/lessons/12981
 public class Problem_32 {
 
     public static void main(String[] args) {

@@ -1,7 +1,8 @@
 import java.util.*;
 import java.util.stream.Collectors;
 
-// 폰켓몬
+// 폰켓몬 (제출 완료)
+// https://school.programmers.co.kr/learn/courses/30/lessons/1845
 // n/2 중 가장 많은 폰켓몬 고르기
 public class Problem_31 {
 

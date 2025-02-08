@@ -16,13 +16,13 @@ public class Problem_48 {
         long time;
 
         start = System.nanoTime();
-        int result1 = solution(n1, weak1, dist1);
+        int result1 = solution1(n1, weak1, dist1);
         time = System.nanoTime() - start;
         System.out.println(result1);
         System.out.println("My Solution(1): " + time);
 
         start = System.nanoTime();
-        int result2 = solution(n2, weak2, dist2);
+        int result2 = solution1(n2, weak2, dist2);
         time = System.nanoTime() - start;
         System.out.println(result2);
         System.out.println("My Solution(2): " + time);
@@ -34,7 +34,7 @@ public class Problem_48 {
         System.out.println("Solution in book(1): " + time);
 
         start = System.nanoTime();
-        int result4 = solution(n2, weak2, dist2);
+        int result4 = Solution.solution(n2, weak2, dist2);
         time = System.nanoTime() - start;
         System.out.println(result4);
         System.out.println("Solution in book(2): " + time);
@@ -50,6 +50,7 @@ public class Problem_48 {
         return min == Integer.MAX_VALUE ? -1 : min;
     }
 
+    // backtracking X
     public static void backTrack(int n, int[] weak, int[] dist, boolean[] visited, boolean[] pick, int count) {
         if (min < count) {
             return;
@@ -73,6 +74,49 @@ public class Problem_48 {
                     pick[i] = false;
                 }
             }
+        }
+    }
+
+    public static int solution1(int n, int[] weak, int[] dist) {
+        min = Integer.MAX_VALUE;
+        backTrack1(n, weak, dist);
+        return min == Integer.MAX_VALUE ? -1 : min;
+    }
+
+    // dfs 방식에서 bfs 방식으로 변경, 최소를 구하는 것이 친구 수 이므로 친구 수가 가장 작은 것부터 찾아서 찾으면 종료하는 방식
+    public static void backTrack1(int n, int[] weak, int[] dist) {
+        ArrayDeque<Visit> visitedQueue = new ArrayDeque<>();
+        visitedQueue.add(new Visit(new boolean[n], 1));
+
+        while (!visitedQueue.isEmpty()) {
+            Visit visit = visitedQueue.pollFirst();
+            boolean[] visited = visit.visited;
+            int count = visit.count;
+
+            if (Arrays.stream(weak).allMatch(index -> visited[index])) {
+                min = Math.min(min, count - 1);
+                return;
+            }
+
+            for (int j = 0; j < weak.length; j++) {
+                int start = weak[j];
+                if (visited[start]) {
+                    continue;
+                }
+                int distance = dist[dist.length - count];
+                boolean[] clone = visited.clone();
+                fillBoolean(clone, n, start, start + distance, true);
+                visitedQueue.addLast(new Visit(clone, count + 1));
+            }
+        }
+    }
+
+    public static class Visit {
+        boolean[] visited;
+        int count;
+        public Visit(boolean[] visited, int count) {
+            this.visited = visited;
+            this.count = count;
         }
     }
 

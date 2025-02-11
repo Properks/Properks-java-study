@@ -1,6 +1,6 @@
 import java.util.*;
 
-// 스도쿠 퍼즐
+// 스도쿠 퍼즐 (저자 문제)
 public class Problem_44 {
 
     public static void main(String[] args) {

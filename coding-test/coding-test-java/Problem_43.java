@@ -1,6 +1,6 @@
 import java.util.*;
 
-// 1부터 N까지 숫자 중 합이 10이 되는 조합 구하기
+// 1부터 N까지 숫자 중 합이 10이 되는 조합 구하기 (저자 문제)
 public class Problem_43 {
     static List<List<Integer>> answer = new ArrayList<>();
     public static void main(String[] args) {

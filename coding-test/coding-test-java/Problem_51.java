@@ -18,7 +18,7 @@ public class Problem_51 {
     }
 
     public static int[] solution(int[]arr1, int[] arr2) {
-        return mySolution(arr1, arr2);
+        return bookSolution(arr1, arr2);
     }
 
     public static int[] mySolution(int[] arr1, int[] arr2) {
@@ -50,6 +50,30 @@ public class Problem_51 {
                 i++;
             }
         }
+        return newArray;
+    }
+
+    public static int[] bookSolution(int[] arr1, int[] arr2) {
+        int n = arr1.length;
+        int m = arr2.length;
+
+        int i = 0;
+        int j = 0;
+
+        int[] newArray = new int[n + m];
+        int newArrayIndex = 0;
+        while (i < n && j < m) {
+            newArray[newArrayIndex++] = arr1[i] < arr2[j] ? arr1[i++] : arr2[j++];
+        }
+
+        while (i < n) {
+            newArray[newArrayIndex++] = arr1[i++];
+        }
+
+        while (j < m) {
+            newArray[newArrayIndex++] = arr2[j++];
+        }
+
         return newArray;
     }
 }
